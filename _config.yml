@@ -10,3 +10,5 @@ description: Co-founder of York Developers.  Ultra Runner.  Works at Proactis Lt
 avatar: https://avatars1.githubusercontent.com/u/8648315?v=3&s=400
 
 markdown: kramdown
+
+permalink: /blog/:year/:month/:day/:title
