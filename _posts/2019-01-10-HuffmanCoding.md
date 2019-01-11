@@ -7,9 +7,9 @@ Following a conversation with David Turner after the [YorkCodeDojo](https://meet
 
 As I couldn't remember the finer details (University was a long time ago),  it was off to Wikipedia to look it up. https://en.wikipedia.org/wiki/Huffman_coding
 
-My first step to order the letters by the frequency in which they occured in the source text.  At this point I got a bit sidetracked as I wondered if using Linq would be a lot slower than writing a manual loop.
+My first step was to order the letters by the frequency in which they occured in the source text.  At this point I got a bit sidetracked as I wondered if using Linq would be a lot slower than writing a manual loop.
 
-I now have a nice reuseable timing function
+I now have a nice reuseable timing function :-)
 
 ```c#
 internal static T Time<T>(Func<T> function)
