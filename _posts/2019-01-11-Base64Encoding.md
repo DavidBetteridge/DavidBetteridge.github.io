@@ -3,6 +3,8 @@ layout: post
 title: Base64 Encoding
 ---
 
+## Encoding
+
 Following on from yesterday's Huffman coding,  I thought that I would write a Base64 encoder in C#.
 
 At first glance this seems straight forward
@@ -110,6 +112,67 @@ private char Lookup(byte index)
     else
         return ' ';
 }
+```
+
+## Decoding
+
+To convert back from Base64 it's the same process but in reverse.  Again the complication is around handling any padding which was added by the encoding process.
+
+We begin by writing a function which given an encoded character,  will look up it's value and return it as binary (6 bits).
+
+```c#
+private string LookupCharAsBinary(char c)
+{
+    var base10 = 0;
+
+    if (c >= 'A' && c <= 'Z')
+        base10 = c - 'A';
+    else if (c >= 'a' && c <= 'z')
+        base10 = c - 'a' + 26;
+    else if (c >= '0' && c <= '9')
+        base10 = c - '0' + 52;
+    else if (c == '+')
+        base10 = 62;
+    else if (c == '/')
+        base10 = 63;
+
+    return Convert.ToString(base10, 2).PadLeft(6, '0');
+}
+```
+
+The complete input string is converted into binary by looking at blocks of four character at a time.  This then allows us to undo any padding.
+
+```c#
+var asBinary = "";
+foreach (var block in FourCharacters(encodedText))
+{
+    if (block.EndsWith("=="))
+    {
+        asBinary += LookupCharAsBinary(block[0]);
+        asBinary += LookupCharAsBinary(block[1]).Substring(0, 2);
+    }
+    else if (block.EndsWith("="))
+    {
+        asBinary += LookupCharAsBinary(block[0]);
+        asBinary += LookupCharAsBinary(block[1]);
+        asBinary += LookupCharAsBinary(block[2]).Substring(0, 4);
+    }
+    else
+    {
+        asBinary += LookupCharAsBinary(block[0]);
+        asBinary += LookupCharAsBinary(block[1]);
+        asBinary += LookupCharAsBinary(block[2]);
+        asBinary += LookupCharAsBinary(block[3]);
+    }
+}
+```
+
+Once we have our complete binary string,  we can walk along it an octet at a time converting it into an ASCII character.
+
+```c#
+var asText = "";
+foreach (var octet in Octets(asBinary))
+    asText += ((char)Convert.ToByte(octet, 2)).ToString();
 ```
 
 The complete code with tests is available on [github](https://github.com/DavidBetteridge/Base64Encoder) 
