@@ -49,7 +49,7 @@ private IEnumerable<string> ThreeOctets(string binaryText)
 }
 ```
 
-We use a switch statement to add the three possible padding cases
+We use a switch statement to handle the three possible padding cases
 
 ```c#
 var result = "";
@@ -79,7 +79,7 @@ foreach (var block in ThreeOctets(asBinary))
 }
 ```
 
-The __ConvertSextet__ function handles the extracting the 6 bits which make up the sextet from the 3 octel string.  If then converts the 6 bits into base10,  and uses that to look up it's matching character.  Again,  this function has to take care and right-pad the sextet with zeros if the input block is too short. 
+The __ConvertSextet__ function handles extracting the 6 bits which make up the sextet from the 24bit string.  It then converts the 6 bits into base10,  and uses that to look up it's matching character.  This function also has to take care to right-pad the sextet with zeros if the input block is too short. 
 
 ```c#
 private string ConvertSextet(int sextetNumber, string block)
