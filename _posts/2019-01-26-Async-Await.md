@@ -54,6 +54,9 @@ Continuing running your program (past the breakpoint) and boom!! - we have a cra
 
 The reason for this is that the user interface can only be updated from the UI thread,  and our program is no longer on the UI thread.
 
+## SynchronizationContexts
+Strictly speaking we should be referring to the __SynchronizationContext__ rather than the UI thread however we will skip over that for now!  
+
 ### The inverse
 Although __ConfigureAwait(true)__ means your program will be on the same thread either side of the await call,  __ConfigureAwait(true)__ doesn't mean that the threads will be different.  If the awaited call doesn't create a new thread then the caller will continue on the existing thread. 
 
@@ -76,3 +79,7 @@ The recommendation is to set __ConfigureAwait(false)__ on all await calls,  this
   
 ### References
 [Async and Await, All the Things Your Mother Never Told You – James Clancey](https://www.youtube.com/watch?v=jgxJbshvCXQ)
+
+[C#: Why you should use ConfigureAwait(false) in your library code](https://medium.com/bynder-tech/c-why-you-should-use-configureawait-false-in-your-library-code-d7837dce3d7f)
+
+[Async/Await - Best Practices in Asynchronous Programming] (https://msdn.microsoft.com/en-us/magazine/jj991977.aspx)
