@@ -80,6 +80,6 @@ The recommendation is to set __ConfigureAwait(false)__ on all await calls,  this
 ### References
 [Async and Await, All the Things Your Mother Never Told You – James Clancey](https://www.youtube.com/watch?v=jgxJbshvCXQ)
 
-[C#: Why you should use ConfigureAwait(false) in your library code](https://medium.com/bynder-tech/c-why-you-should-use-configureawait-false-in-your-library-code-d7837dce3d7f)
+[#: Why you should use ConfigureAwait(false) in your library code](https://medium.com/bynder-tech/c-why-you-should-use-configureawait-false-in-your-library-code-d7837dce3d7f)
 
-[Async/Await - Best Practices in Asynchronous Programming] (https://msdn.microsoft.com/en-us/magazine/jj991977.aspx)
+[Async/Await - Best Practices in Asynchronous Programming](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx)
