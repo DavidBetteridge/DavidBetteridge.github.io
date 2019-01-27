@@ -104,11 +104,14 @@ Run the program,  and you will now find that your exception is correctly caught.
 ### Rules
 There are three rules for when you need to call an asynchronous method.
 
-1.  Make the calling method asynchronous whenever you can.
+1.  Make the calling method asynchronous whenever you can<sup>#1</sup>.
 2.  Never use __.Wait()__ or __.Result__  always use __GetAwaiter().GetResult()__  
 3.  Never call an asynchronous method without awaiting it.
 
 There is a minor exception to these rules which we will look at next time.
+
+#1
+As @kev_bite pointed out to me,  there are very few reasons not to make your method asynchronous in modern C#.  For example C# 7.1 supports asynchronous Main methods in console apps,  and you can use __IHttpAsyncHandler__ instead of __IHttpHandler__ in asp.net.
 
 ### References
 [Correcting Common Mistakes When Using Async/Await in .NET - Brandon Minnick](https://www.youtube.com/watch?v=av5YNd4X3dY)
