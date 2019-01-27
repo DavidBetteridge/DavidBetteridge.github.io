@@ -104,8 +104,8 @@ Run the program,  and you will now find that your exception is correctly caught.
 ### Rules
 There are three rules for when you need to call an asynchronous method.
 
-1   Make the calling method asynchronous whenever you can.
-2   Never use __.Wait()__ or __.Result__  always use __GetAwaiter().GetResult()__  
+1.  Make the calling method asynchronous whenever you can.
+2.  Never use __.Wait()__ or __.Result__  always use __GetAwaiter().GetResult()__  
 3.  Never call an asynchronous method without awaiting it.
 
 There is a minor exception to these rules which we will look at next time.
