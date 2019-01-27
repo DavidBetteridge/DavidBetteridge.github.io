@@ -110,7 +110,7 @@ There are three rules for when you need to call an asynchronous method.
 
 There is a minor exception to these rules which we will look at next time.
 
-#1
+<sup>#1</sup>
 As @kev_bite pointed out to me,  there are very few reasons not to make your method asynchronous in modern C#.  For example C# 7.1 supports asynchronous Main methods in console apps,  and you can use __IHttpAsyncHandler__ instead of __IHttpHandler__ in asp.net.
 
 ### References
