@@ -58,7 +58,7 @@ The reason for this is that the user interface can only be updated from the UI t
 Strictly speaking we should be referring to the __SynchronizationContext__ rather than the UI thread however we will skip over that for now!  
 
 ### The inverse
-Although __ConfigureAwait(true)__ means your program will be on the same thread either side of the await call,  __ConfigureAwait(true)__ doesn't mean that the threads will be different.  If the awaited call doesn't create a new thread then the caller will continue on the existing thread. 
+Although __ConfigureAwait(true)__ means your program will be on the same thread either side of the await call,  __ConfigureAwait(false)__ doesn't mean that the threads will be different.  If the awaited call doesn't create a new thread then the caller will continue on the existing thread. 
 
 This can be shown by creating the following function
 
