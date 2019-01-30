@@ -42,10 +42,10 @@ ul.posts li {
     list-style: none;
 }
 
-code {
+.code {
     background-color:  #fff;
 }
 
-precode {
+.precode {
     background-color:  #fff;
 }
