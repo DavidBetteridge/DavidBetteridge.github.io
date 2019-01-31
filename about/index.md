@@ -14,6 +14,8 @@ I work in a technical role for Proactis Limited and the views on this blog are m
 
 I've got over 20 years of experience as a professional software developer.  During that time I've used a number of different programming languages and technologies.  My current area of expertise is on the Microsoft Stack (C#, F#, SQL Server, Windows and .net Core).  
 
+I've also got a keen interest in Cyber Security,  and have completed twice in the Masterclass final of the [Cyber Security Challenge](https://www.cybersecuritychallenge.org.uk/).
+
 ### Ultra Running
 
 When I'm not coding or with my family then I'm often out running.  I normally run in the excellent series of [Hardmoors](https://www.hardmoors110.org.uk/) ultra races on the North York Moors.
