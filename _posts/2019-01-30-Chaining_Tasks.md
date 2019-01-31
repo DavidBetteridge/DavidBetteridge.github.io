@@ -104,11 +104,12 @@ For example we can turn the string within a Task<string> into uppercase
 public static Task<string> ToUpperCase(Task<string> task)
 {
     return task.ContinueWith(
-        t => {
+        t =>
+        {
             var unwrapped = t.Result;
             var inUpperCase = unwrapped.ToUpper();
             return inUpperCase;
-            }
+        }
         );
 }
 ```        
@@ -126,18 +127,19 @@ In both cases we have preserved the important property of a Task,  in that it's 
 
 ---
 
-We have just seen that we can go from Task<T> to Task<T>  but can we go from Task<T> to Task<S>?
+We have just seen that we can go from Task<T> to Task<T>  but can we go from Task of T to Task of S?
 
-The following example shows us going Task<string> to Task<int>
+The following example shows us going from Task<string> to Task<int>
 
 ```c#
 public static Task<int> StringLength(Task<string> task)
 {
     return task.ContinueWith(
-        t => {
+        t => 
+        {
             var unwrapped = t.Result;
-            var inUpperCase = unwrapped.Length;
-            return inUpperCase;
+            var result = unwrapped.Length;
+            return result;
         }
         );
 }
