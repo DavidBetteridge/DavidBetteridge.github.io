@@ -24,22 +24,22 @@ Finally if you don't spot that the function is asynchronous then you will find y
 For example this synchronous version is fine  
 
 ```c#
-var customer = GetCustomer(1);
-Console.WriteLine(customer.Name)
+var customer = GetCustomerByID(1);
+Console.WriteLine(customer.BusinessName)
 ```
 
-but this asynchronous version won't compile as customer contains a `Task<Customer>` not a just `Customer`.
+but this asynchronous version won't compile as customer contains a `Task<Customer>` not a just `Customer`,  and `BusinessName` isn't a property of `Task`.
 
 ```c#
-var customer = GetCustomerAsync(1);
-Console.WriteLine(customer.Name)
+var customer = GetCustomerByIDAsync(1);
+Console.WriteLine(customer.BusinessName)
 ```
 
 the correct code would be
 
 ```c#
-var customer = await GetCustomer(1);
-Console.WriteLine(customer.Name)
+var customer = await GetCustomerByIDAsync(1);
+Console.WriteLine(customer.BusinessName)
 ```
 
 ## Calling an asynchronous method
@@ -90,7 +90,7 @@ public async Task<decimal> CalculateGrossValue(decimal netValue, decimal taxValu
 }
 ```
 
-and then you make the same change to the function which calls `CalculateGrossValue` and so until you reach the entry point of you code.
+and then you make the same change to the functions which call `CalculateGrossValue` and so on until you reach the entry point of you code.
 
 Don't worry if this seems a pain at first,  you soon get used to it!
 
