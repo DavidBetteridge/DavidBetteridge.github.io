@@ -14,6 +14,11 @@ As a result can't be directly returned from the method (as it hasn't completed y
 
 Most of the time you don't need to worry about writing code to run on a different thread, you just need to know how to call the provided methods.
 
+There are a number of asynchronous methods provided by the base framework libraries,  for example
+* HttpClient -> GetJsonAsync()
+* SQLConnection -> OpenAsync() 
+* System.IO.File -> WriteAllTextAsync()
+
 ## Identifying an asynchronous method
 The best way to determine if a method is asynchronous is by it's return type.  An asynchronous method will return either a `Task` or a `Task<T>`.  For example a method called `GetCustomerAsync` might have a return type of `Task<Customer>` .
 
@@ -28,7 +33,7 @@ var customer = GetCustomerByID(1);
 Console.WriteLine(customer.BusinessName)
 ```
 
-but this asynchronous version won't compile as customer contains a `Task<Customer>` not a just `Customer`,  and `BusinessName` isn't a property of `Task`.
+but this asynchronous version won't compile as customer is of type `Task<Customer>` not a just `Customer`,  and `BusinessName` isn't a property of `Task`.
 
 ```c#
 var customer = GetCustomerByIDAsync(1);
