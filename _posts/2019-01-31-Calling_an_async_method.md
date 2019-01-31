@@ -28,7 +28,7 @@ var customer = GetCustomer(1);
 Console.WriteLine(customer.Name)
 ```
 
-but this asynchronous version won't compile as customer contains a `Task<Customer>` not a `Customer`.
+but this asynchronous version won't compile as customer contains a `Task<Customer>` not a just `Customer`.
 
 ```c#
 var customer = GetCustomerAsync(1);
@@ -44,7 +44,7 @@ Console.WriteLine(customer.Name)
 
 ## Calling an asynchronous method
 
-As you may have spotted in the example above,  you have to place the keyword __await__ in front of the method call.  If you try the following example however you will notice that it doesn't compile.
+As you may have spotted in the example above,  you have to place the keyword `await` in front of the method call.  If you try the following example however you will notice that it doesn't compile.
 
 ```c#
 public void AddMessageToLogFile(string message)
@@ -53,7 +53,7 @@ public void AddMessageToLogFile(string message)
 }
 ```
 
-this is because in order to use the __await__ keyword you have to add the word __async__ to the function signature.
+this is because in order to use the `await` keyword you have to add the word `async` to the function signature.
 
 ```c#
 //Don't do this!
@@ -91,6 +91,8 @@ public async Task<decimal> CalculateGrossValue(decimal netValue, decimal taxValu
 ```
 
 and then you make the same change to the function which calls `CalculateGrossValue` and so until you reach the entry point of you code.
+
+Don't worry if this seems a pain at first,  you soon get used to it!
 
 ## A real world example
 
