@@ -42,10 +42,7 @@ ul.posts li {
     list-style: none;
 }
 
-.code {
-    background-color:  #fff;
+pre code {
+    background-color: transparent;
 }
 
-.precode {
-    background-color:  #fff;
-}
