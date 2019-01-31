@@ -4,16 +4,21 @@ title: AboutMe
 permalink: /about/
 ---
 
-Hi,  I'm one of the co-founders of [YorkDevelopers.org] and also organise the monthly YorkCodeDojo meetup.
+Hi,  I'm one of the co-founders/treasurer of [YorkDevelopers.org](https://YorkDevelopers.org) and also organise the monthly YorkCodeDojo meetup.
 
 ### Proactis Limited
 
 I work in a technical role for Proactis Limited and the views on this blog are mine and may not be those of Proactis.
 
-### Ultra Runner
+### Skills
 
-When I'm not coding or with my family then I'm normally out running.  I normally compete in the excellent series of Hardmoor races on the North York Moors.
+I've got over 20 years of experience as a professional software developer.  During that time I've used a number of different programming languages and technologies.  My current area of expertise is on the Microsoft Stack (C#, F#, SQL Server, Windows and .net Core).  
 
+### Ultra Running
+
+When I'm not coding or with my family then I'm often out running.  I normally run in the excellent series of [Hardmoors](https://www.hardmoors110.org.uk/) ultra races on the North York Moors.
+
+In 2018 I completed the Winter Spine race along the length of the Pennine Way.  This was a fantastic adventure but by far the hardest challenge I've every done.
 
 ### Contact me
 
