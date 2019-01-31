@@ -145,6 +145,61 @@ public static Task<int> StringLength(Task<string> task)
 }
 ```        
 
+We can make this more generic by creating function which takes in a function to be applied to the unwrapped value.
+
+```c#
+public static async Task<T> Map<S, T>(Task<S> task, Func<S, T> fn)
+{
+    var unwrapped = await task;
+    var result = fn(unwrapped);
+    return result;
+}
+```
+
+This can be called as follows
+```c#
+var myTask = Task.FromResult("Hello World");
+var length = Map(myTask, (s => s.Length));
+Console.WriteLine(length.Result);
+```
+
+---
+
+Imagine that you have a Task of int which contains the ID of our best customer.  You then use our __Map__ function in order replace that with the details of our customer
+
+```c#
+var highestValueCustomerIDTask = Task.FromResult(1);
+var customerTask = Map(highestValueCustomerIDTask, s => LoadCustomer(s));
+```
+
+where __LoadCustomer__ has the signature of
+
+```c#
+public Task<Customer> LoadCustomer(int customerID)
+```
+
+Ideally __customerTask__ would be of type Task<Customer>.  However,  because LoadCustomer itself returns a task,  it means that customerTask is now of type Task of Task of Customer.  
+
+We change the signature of the __Map__ function to do exactly what we need,  ie taking in a function from S to Task<T> rather than a function from S to T
+
+```c#
+public static async Task<T> Map2<S, T>(Task<S> task, Func<S, Task<T>> fn)
+```
+the only change we need to make to it's implementation is to unwrap the result a second time before returning the result.
+
+The function now looks like
+
+```c#
+public static async Task<T> Bind<S, T>(Task<S> task, Func<S, Task<T>> fn)
+{
+    var unwrapped = await task;
+    var result = fn(unwrapped);
+    return await result;
+}
+```
+
+we normally call this type of function __Bind__
+
 
 
 ### References
