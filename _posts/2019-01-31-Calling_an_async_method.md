@@ -5,7 +5,7 @@ title: Calling an async method
 
 ## Overview
 
-This post is a beginners guide to using async methods.  You should be able to follow these steps without understand how it works.
+This post is a getting started guide to using async methods.  There should be enough information to get you started without understand how it all works!
 
 ## What is an asynchronous method
 You can think of an asynchronous method as a function which will run on a different thread and complete executing sometime in the future.
@@ -68,7 +68,7 @@ public async void AddMessageToLogFile(string message)
 }
 ```
 
-The code will compile but is still wrong.  With one exception,  whenever you have an `async` method you must return `Task` rather than `void` and `Task<T>` rather than just T.  ie `Task<string>` not just `string`
+The code will compile but is still wrong.  With one exception,  whenever you have an `async` method you must return `Task` rather than `void`.  Likewise you should return `Task<T>` rather than just T.  ie `Task<string>` not just `string`
 
 Our correct code then looks like this
 
@@ -84,7 +84,7 @@ public async Task AddMessageToLogFile(string message)
 
 ## Calling an asynchronous method which calls an asynchronous method
 
-If you now try to use our `AddMessageToLogFile` method you will find that the same rules apply.  We have to prefix it with `await` and change the function to `async Task`.  For example
+If you now try to use call `AddMessageToLogFile` method you will find that the same rules apply.  We have to prefix the call with `await` and change the function to `async Task`.  For example
 
 ```c#
 public async Task<decimal> CalculateGrossValue(decimal netValue, decimal taxValue)
