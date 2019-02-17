@@ -25,9 +25,9 @@ var c = A(z)
     ).Result;
 ```
 
-The sample above breaks down into 4 section,  either side of the asynchronous calls as shown below.
+The sample above breaks down into several sections,  either side of the asynchronous calls as shown below.
 
-![continue-with.PMG]({{site.baseurl}}/images/async_await/continue-with.PNG)
+![continue-with.PMG]({{site.baseurl}}/images/async_await/continue-with.png)
 
 which we can then write as a function with using a `switch` statement
 
