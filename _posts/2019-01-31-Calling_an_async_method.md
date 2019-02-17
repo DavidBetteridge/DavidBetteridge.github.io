@@ -8,7 +8,7 @@ title: Calling an async method
 This post is a getting started guide to using async methods.  There should be enough information to get you started without understand how it all works!
 
 ## What is an asynchronous method
-You can think of an asynchronous method as a function which will run on a different thread and complete executing sometime in the future.
+You can think of an asynchronous method as a function which will run on a different thread and completes executing sometime in the future.
 
 As a result can't be directly returned from the method (as it hasn't completed yet) an object of type `Task` is returned.  When the method finally completes,  the task will contain the result of the function.
 
