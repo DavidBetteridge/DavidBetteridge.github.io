@@ -32,7 +32,7 @@ function displayRoute(xmlFile, map, colour) {
 
                 var line = new Microsoft.Maps.Polyline(coords, {
                     strokeColor: colour,
-                    strokeThickness: 3,
+                    strokeThickness: 5,
                     metadata: xmlFile
                 });
                 layer.add(line);
@@ -50,18 +50,6 @@ function displayRoute(xmlFile, map, colour) {
     client.send();
 }
 
-function redrawMap() {
-    layer.clear();
-
-    var checkboxes = document.querySelectorAll(".route");
-    checkboxes.forEach(function (checkbox) {
-        if (checkbox.checked) {
-            var filename = checkbox.getAttribute("value");
-            displayRoute(filename, map, 'red')
-        }
-    });
-}
-
 function removeRoute(filename, layer) {
     var primitives = layer.getPrimitives();
     primitives.forEach(function (primitive) {
@@ -71,13 +59,13 @@ function removeRoute(filename, layer) {
     });
 }
 
-
 var checkboxes = document.querySelectorAll(".route");
 checkboxes.forEach(function (checkbox) {
     checkbox.addEventListener('change', function () {
         if (this.checked) {
             var filename = this.getAttribute("value");
-            displayRoute(filename, map, 'red')
+            var colour = this.getAttribute("data-colour");
+            displayRoute(filename, map, colour)
         } else {
             removeRoute(filename, layer)
         }
