@@ -1,4 +1,46 @@
-Run rabbit run...
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MyRuns</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <style type='text/css'>body{margin:0;padding:0;overflow:hidden;font-family:'Segoe UI',Helvetica,Arial,Sans-Serif}</style>
+        <style>
+            .row {
+                display: flex;
+                }
 
-Strava
-Map
+                .column {
+                flex: 90%;
+                } 
+        </style>
+    </head>
+    <body>
+
+        <div class="row">
+
+            <div class="column" id='myMap' style='height: 100vh;'></div>
+
+            <div class="column" id='printoutPanel'>
+                <ul>
+                <li><input type="checkbox">Pock To York</input></li>
+                <li><input type="checkbox">Foss Walk</input></li>
+                <li><input type="checkbox">Wolds Way (HM200 2017)</input></li>
+                <li><input type="checkbox">York to Doncaster (2018)</input></li>
+                <li><input type="checkbox">Leeds to York (2019)</input></li>
+                <li><input type="checkbox">Meridium to Doncaster (Escape from Meridum 2017)</input></li>
+                <li><input type="checkbox">Malton to Hope (Convergent 2018)</input></li>
+                <li><input type="checkbox">Pennine Way (Spine Winter 2018)</input></li>
+                <li><input type="checkbox">Bristol to London (KACA 2018)</input></li>
+                <li><input type="checkbox">Cleveland Way (Lots!)</input></li>
+                <li><input type="checkbox">Taburlar Hills (HM160)</input></li>
+                <li><input type="checkbox">Lyke Wake Walk (2017)</input></li>
+                <li><input type="checkbox">White Rose Ultra (3 Times)</input></li>
+                <li><input type="checkbox">Gargrave To Leeds (Leeds-Liverpool Canal)</input></li>
+            </ul>
+            </div>
+        </div>
+
+        <script type='text/javascript' src='running.js'></script>
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AoMlZ5rJywSt5Yeba_5_EpNUkmzPkotnJs5d0K5XC16zY6xxShIH4Ipny7xWCLFM &callback=loadMapScenario' async defer></script>
+    </body>
+</html>
