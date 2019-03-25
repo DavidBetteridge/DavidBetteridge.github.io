@@ -1,5 +1,6 @@
 var map
 var layer
+var runs = {};
 
 function loadMapScenario() {
     map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
@@ -35,6 +36,9 @@ function displayRoute(xmlFile, map, colour) {
                     strokeThickness: 5,
                     metadata: xmlFile
                 });
+
+                runs[xmlFile] = line;
+
                 layer.add(line);
             }
         } 
@@ -44,17 +48,29 @@ function displayRoute(xmlFile, map, colour) {
         }
     }
 
-    var client = new XMLHttpRequest();
-    client.onreadystatechange = handler;
-    client.open("GET", "/running/data/" + xmlFile);
-    client.send();
+    var run = runs[xmlFile];
+    if (run === undefined)
+    {
+        var client = new XMLHttpRequest();
+        client.onreadystatechange = handler;
+        client.open("GET", "/running/data/" + xmlFile);
+        client.send();
+    }
+    else
+    {
+        layer.add(run);
+    }
 }
+ 
 
-function removeRoute(filename, layer) {
-    var primitives = layer.getPrimitives();
-    primitives.forEach(function (primitive) {
-        if (primitive.metadata == filename) {
-            layer.remove(primitive);
+function redraw() {
+    layer.clear();
+    var checkboxes = document.querySelectorAll(".route");
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            var filename = checkbox.getAttribute("value");
+            var colour = checkbox.getAttribute("data-colour");
+            displayRoute(filename, map, colour)            
         }
     });
 }
@@ -67,7 +83,7 @@ checkboxes.forEach(function (checkbox) {
             var colour = this.getAttribute("data-colour");
             displayRoute(filename, map, colour)
         } else {
-            removeRoute(filename, layer)
+            redraw();
         }
     });
 });
