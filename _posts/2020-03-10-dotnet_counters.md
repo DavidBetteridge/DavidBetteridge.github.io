@@ -113,16 +113,15 @@ This takes the same `-p`,  `--refreshInterval` and list of counters as the `moni
 
 It looks like this file will get pretty big quickly,  so choose the counters to collect and refresh interval wisely!
 
-
 ## Troubleshooting
 
-If not counters are being collected then
+If no counters are being collected then
 
-1. Using `dotnet-counters ps` double check the PID of your process
+1. Using `dotnet-counters ps` double check the PID of your process.
 
-2. Make sure that the list of counter sets is correct.  These are space separated (not comma).
+2. Make sure that the list of counter sets is correct.  These are space separated (not comma separated).  e.g `System.Runtime Microsoft.AspNetCore.Hosting` not `System.Runtime, Microsoft.AspNetCore.Hosting`
 
-3. If you are specifying individual counters,  then make sure that these are commas separated without any spaces.
+3. If you are specifying individual counters,  then make sure that these are commas separated without any spaces. e.g  `Microsoft.AspNetCore.Hosting[requests-per-second,failed-requests]` not `Microsoft.AspNetCore.Hosting[requests-per-second, failed-requests]`
 
 ## References
 
