@@ -1,6 +1,6 @@
 ---
 layout: post
-title: dotnet-counters?
+title: dotnet-counters
 ---
 
 ## dotnet-counters
