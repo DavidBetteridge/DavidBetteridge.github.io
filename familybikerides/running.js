@@ -53,7 +53,7 @@ function displayRoute(xmlFile, map, colour) {
     {
         var client = new XMLHttpRequest();
         client.onreadystatechange = handler;
-        client.open("GET", "/running/data/" + xmlFile);
+        client.open("GET", "/familybikerides/data/" + xmlFile);
         client.send();
     }
     else
