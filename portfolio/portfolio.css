@@ -5,15 +5,15 @@
   grid-template-areas:
   "hd"
   "hero  "
-  "casestudies"
+  "projects"
   "contact"
   "ft";
+  padding-left: 30px;
 }
-/* case studies */
-.casestudies {
+.projects {
   align-items: stretch;
   display:grid;
-  grid-area: casestudies;
+  grid-area: projects;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto;
   justify-self: stretch;
@@ -57,7 +57,7 @@
 
 .content-image{
   width: 100%;
-  height:100%;
+  height:360px;
 }
 .content-details {
   position: absolute;
