@@ -12,3 +12,15 @@ body {
 .column {
     flex: 90%;
 }
+
+.sectionHeader {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-left: 30px;
+    margin-bottom: -10px;
+}
+
+
+.routeAll {
+    margin: 20px;
+}
