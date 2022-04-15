@@ -104,7 +104,7 @@ questions = {
 
   "F555553": {
     text: "Follow the fence to see Jacob and get the next QR code from the closed gate",
-    evalulator: (answer) => answer.toLowerCase().includes("QR999"),
+    evalulator: (answer) => answer.includes("QR999"),
     next: "QR999"
   },
 
