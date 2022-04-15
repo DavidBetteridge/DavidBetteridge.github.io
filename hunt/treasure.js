@@ -55,7 +55,7 @@ questions = {
   },
 
   "A12312": {
-    text: "In the bt car park who do you get to fix your tap?",
+    text: "In the BT car park who do you get to fix your tap?",
     evalulator: (answer) => answer.toUpperCase().includes("STEPHENSON"),
     next: "A8888"
   },
@@ -74,43 +74,43 @@ questions = {
 
   "MS123": {
     text: "In your favourite shop, what is ready in aisle 1?",
-    evalulator: (answer) => answer.toLowerCase.includes("banana"),
+    evalulator: (answer) => answer.toLowerCase().includes("banana"),
     next: "C1111"
   },
 
   "C1111": {
-    text: "Go out the other day and past the best cereal shop in the world.  What has Barry Crus sold?",
-    evalulator: (answer) => answer.toLowerCase.includes("lewin"),
+    text: "Go out the other door and past the best cereal shop in the world.  What has Barry Crux sold?",
+    evalulator: (answer) => answer.toLowerCase().includes("lewin"),
     next: "D111"
   },
 
   "D111": {
     text: "How big is the second floor of Debenhams?",
-    evalulator: (answer) => answer.toLowerCase.includes("101"),
+    evalulator: (answer) => answer.toLowerCase().includes("101"),
     next: "Y6666"
   },
 
   "Y6666": {
     text: "When was the YPS founded?",
-    evalulator: (answer) => answer.toLowerCase.includes("1822"),
+    evalulator: (answer) => answer.toLowerCase().includes("1822"),
     next: "S5555"
   },
 
   "S5555": {
     text: "Where exactly can you see the stars?",
-    evalulator: (answer) => answer.toLowerCase.includes("53"),
+    evalulator: (answer) => answer.toLowerCase().includes("53"),
     next: "F555553"
   },
 
   "F555553": {
     text: "Follow the fence to see Jacob and get the next QR code from the closed gate",
-    evalulator: (answer) => answer.toLowerCase.includes("QR999"),
+    evalulator: (answer) => answer.toLowerCase().includes("QR999"),
     next: "QR999"
   },
 
   "QR999": {
     text: "How many stars does 'roots' have?",
-    evalulator: (answer) => answer.toLowerCase.includes("1"),
+    evalulator: (answer) => answer.toLowerCase().includes("1"),
     next: "LL3333"
   },
 
