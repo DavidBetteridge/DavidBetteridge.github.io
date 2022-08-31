@@ -1,22 +1,23 @@
+:root {
+  --backgroundColour: #1d2e4f;
+  --textColour: #ffffff;
+}
+
 html {
-  background-color: white;
   font-size: .8rem;
 }
 
 body {
-  background-color: #1d2e4f;
-  color: white;
+  background-color: var(--backgroundColour);
+  color: var(--textColour);
   margin-top: 0;
   font-family: Verdana, sans-serif;
-  /* margin-left: 7rem;
-  margin-right: 7rem; */
 }
 
 .top_left_logo {
   border-radius: 50%;
   width: 10rem;
   margin: 1rem;
-  /* margin-top: 1rem; */
 }
 
 .container {
@@ -46,14 +47,12 @@ body {
   border-top: 0;
   border-left: 0;
   border-bottom: 0;
-  border-right: 1px solid white;
+  border-right: 1px solid var(--textColour);
 }
 
 .item-content {
   grid-area: content;
   font-size: 1.2rem;
-
-  /* background-color: aliceblue; */
 }
 
 .item-sidebar li {

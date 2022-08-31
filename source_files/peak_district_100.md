@@ -1,4 +1,4 @@
-## Peak District 100
+# Peak District 100
 
 This really is a race of 2 halves.  The course is based on a figure of eight, with two 50 miles loops.  Starting from Buxton the first loop takes you south on a cycle track towards Bakewell and Matlock, with a couple of hills before returning via another cycle track to Buxton. The second loop takes you north and is much hillier taking in Shining Tor,  Mam Tor and a monster of a  hill just outside of Hope.
 
