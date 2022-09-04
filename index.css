@@ -1,6 +1,15 @@
 :root {
-  --backgroundColour: #1d2e4f;
   --textColour: #ffffff;
+  /* /* --backgroundColour: #270e05; */
+  --backgroundColour: #000000;
+}
+
+h1 {
+  text-decoration: underline;
+}
+
+h2 {
+  text-decoration: underline;
 }
 
 html {
@@ -62,7 +71,7 @@ body {
 
 .item-sidebar a {
   text-decoration: none;
-  color: white;
+  color: var(--textColour);
 }
 
 .content-container {
