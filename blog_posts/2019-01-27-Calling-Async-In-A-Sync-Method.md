@@ -1,7 +1,8 @@
----
-layout: post
-title: Calling an asynchronous method from a synchronous one
----
+START_META
+DATE: 2019-01-27
+TITLE: Calling an asynchronous method from a synchronous one
+END_META
+
 
 Although it's becoming less and less common,  there are times you will need to call an asynchronous from within a synchronous one.  For example when you are implementing an interface; within a constructor or writing a console application with an old version of c#.
 

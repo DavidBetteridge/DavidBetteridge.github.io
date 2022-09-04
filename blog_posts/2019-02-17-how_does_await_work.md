@@ -1,7 +1,7 @@
----
-layout: post
-title: How does await work?
----
+START_META
+DATE: 2019-02-17
+TITLE: How does await work?
+END_META
 
 ## How does the C# compiler convert
 

@@ -1,7 +1,8 @@
----
-layout: post
-title: Chaining Tasks
----
+START_META
+DATE: 2019-01-30
+TITLE: Chaining Tasks
+END_META
+
 
 The __await__ keyword makes it very easy for us to call multiple async methods from within a single method.  For example
 

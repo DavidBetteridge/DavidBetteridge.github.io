@@ -1,11 +1,7 @@
----
-layout: post
-title: Restoring MSDB 
-published: true
-tags: [ARCHIVE, SQL]
-description: Pitfuls of restoring a MSDB database
----
-
+START_META
+DATE: 2012-08-27
+TITLE: Pitfuls of restoring a MSDB database
+END_META
 
 We recently performed a disaster recovery exercise which included the restoration of the MSDB database onto our DR server.  I did a quick google to see if there were any special considerations and found the following MS article.  Considerations for Restoring the model and msdb Databases (http://msdn.microsoft.com/en-us/library/ms190749(v=sql.105).aspx).   It said both the original and replacement servers must be on the same version,  I double-checked and in my case they are both __SQL Server 2008 R2 SP1 (10.50.2500)__.
 

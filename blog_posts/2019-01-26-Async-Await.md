@@ -1,7 +1,7 @@
----
-layout: post
-title: Async and Await in C#
----
+START_META
+DATE: 2019-01-26
+TITLE: Async and Await in C# - Part 1
+END_META
 
 ## Overview
 

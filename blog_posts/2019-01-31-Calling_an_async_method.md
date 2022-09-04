@@ -1,7 +1,8 @@
----
-layout: post
-title: Calling an async method
----
+START_META
+DATE: 2019-01-31
+TITLE: Calling an async method
+END_META
+
 
 ## Overview
 

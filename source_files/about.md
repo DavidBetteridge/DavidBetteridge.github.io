@@ -1,14 +1,4 @@
----
-layout: default
-title: AboutMe
-permalink: /about/
----
-
 Hi,  I'm one of the co-founders/treasurer of [YorkDevelopers.org](https://YorkDevelopers.org) and also organise the monthly YorkCodeDojo meetup.
-
-### Proactis Limited
-
-I work in a technical role for Proactis Limited and the views on this blog are mine and may not be those of Proactis.
 
 ### Skills
 

@@ -19,11 +19,12 @@ class ConversionDetail:
 
 def markdown_to_html(conversion_detail: ConversionDetail,
                      markdown: str) -> str:
+  blog_entries = "\n".join(conversion_detail.blog_entries)
+  markdown = markdown.replace("{{entries}}", blog_entries)
+
   html = conversion_detail.converter.convert(markdown)
-  blog_entries = "\r\n".join(conversion_detail.blog_entries)
   html = conversion_detail.template\
                 .replace("{{body}}", html)\
-                .replace("{{entries}}", blog_entries)\
                 .replace("{{site.baseurl}}", ROOT)
   return html
                 
@@ -76,7 +77,7 @@ def convert_all_blog_posts(conversion_detail: ConversionDetail) -> List[str]:
         path = f'target_blog_posts/{without_ext}.html'
         with open(path, 'w') as f:
           f.write(html)
-        links.append(f"* [{details.title}]({ROOT}{path})")
+        links.append(f"* [{details.title}](/{path})")
     except Exception as e:
       print(str(e))
   return links

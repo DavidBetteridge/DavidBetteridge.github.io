@@ -1,7 +1,8 @@
----
-layout: post
-title: Huffman Coding
----
+START_META
+DATE: 2019-01-10
+TITLE: Huffman Coding
+END_META
+
 
 Following a conversation with David Turner after the [YorkCodeDojo](https://meetup.com/YorkCodeDojo) on Wednesday night I thought I would have a go at implementing Huffman encoding using C#
 

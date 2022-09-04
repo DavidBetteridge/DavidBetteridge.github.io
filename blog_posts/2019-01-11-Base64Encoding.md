@@ -1,7 +1,9 @@
----
-layout: post
-title: Base64 Encoding
----
+START_META
+DATE: 2019-01-11
+TITLE: Base64 Encoding
+END_META
+
+
 
 ## Encoding
 

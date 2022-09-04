@@ -1,7 +1,7 @@
----
-layout: post
-title: Async and Await in C# - Part 2
----
+START_META
+DATE: 2019-01-26
+TITLE: Async and Await in C# - Part 2
+END_META
 
 Create a console app with the following code.  (You will need to set the language version to C# 7.1 or greater)
 

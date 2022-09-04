@@ -1,7 +1,8 @@
----
-layout: post
-title: Extracting values from a task.
----
+START_META
+DATE: 2019-01-28
+TITLE: Extracting values from a task.
+END_META
+
 
 Consider the following code
 
