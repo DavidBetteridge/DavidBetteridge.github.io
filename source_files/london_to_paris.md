@@ -58,8 +58,12 @@ In September of 2022,  Mary and I cycled from London to Paris.
 
 * Kendal mint cake
 * 10 x Protein cereal bars
-* Cup-a-soups (We took too many, only need 3)
+* Cup-a-soups (We took too many, only needed 3)
 * 4 x Super noddles (We mixed the flavours)
 * 4 x dehydrated means (Only used 2)
 * Several packets of golden syrup porridge (we used 6)
 * 2 x packets of sweets
+* 6 x Coffee Bags (used 5)
+* Yorkshire tea bags (used 3)
+* Fruit tea bags (used 3)
+* Squash concentrate
