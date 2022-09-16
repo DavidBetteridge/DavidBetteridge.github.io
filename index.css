@@ -2,6 +2,13 @@
   --textColour: #ffffff;
   /* /* --backgroundColour: #270e05; */
   --backgroundColour: #000000;
+  --linkColour: lightgray;
+}
+
+[data-theme="dark"] {
+  --textColour: #000000;
+  --backgroundColour:  #ffffff;
+  --linkColour: #000000;
 }
 
 h1 {
@@ -44,6 +51,7 @@ body {
 }
 
 .item-header_text {
+  display: flex;
   margin-top: 2rem;
   grid-area: header_text;
   font-size: 5rem;
@@ -81,7 +89,7 @@ body {
 }
 
 .content-container a {
-  color: lightgray
+  color:var(--linkColour)
 }
 
 hr {
@@ -95,4 +103,13 @@ hr {
 .page-title {
   text-align: center;
   font-size: 2rem;
+}
+
+.theme-switch-wrapper {
+  font-size: 1rem;
+  padding-right: 1rem;
+}
+
+.filler {
+  flex: 1
 }
