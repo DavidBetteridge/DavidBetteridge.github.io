@@ -1,25 +1,14 @@
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-
-function switchTheme(e) {
-    if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-    }
-    else {
-        document.documentElement.setAttribute('data-theme', 'light');
-      
-      localStorage.setItem('theme', 'light');
-    }    
+const themeSelected = (e) => {
+  const selectedTheme = e.target.value
+  document.documentElement.setAttribute('data-theme', selectedTheme);
+  localStorage.setItem('theme', selectedTheme);
 }
 
-toggleSwitch.addEventListener('change', switchTheme, false);
+// Respond to a different theme being selected from the dropdown
+const themeDropdown = document.getElementById('theme-selector');
+themeDropdown.addEventListener('change', themeSelected, false);
 
-const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-
-if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-
-    if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
-    }
-}
+// Use the last theme the user selected.
+const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : "blue";
+document.documentElement.setAttribute('data-theme', currentTheme);
+themeDropdown.value = currentTheme;
