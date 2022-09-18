@@ -10,7 +10,7 @@ With trains being trains I didn’t really want to risk an early start and trave
 
 Finally got the bus for the 5 miles down the dual carriage to Queen Elisabeth Park and the start of the race / camp site for the night. I must admit to having a slight navigation error when getting off the bus which then resulted in my reaching the park’s office at 5.01pm. (They closed at 5pm). After some hammering on the door I was let in and managed to explain I was booked into the campsite. There seemed to be some confusion as they hadn’t heard from the Event organisers but gave me a key and pointed me in the direction of the campsite.
 
-The campsite is in a large field at the foot of Butser Hill, the second highest hill in the South Downs. Strangely it takes a while to find a good pitch for our tent when you have the entire campsite to yourself. After a quick meal of noodles I decided to test out my legs by walking to the top of Butser Hill. A few minutes later on I was on the top and admiring the view over Havent, the Solent and onto the Isle of Wight in the distance.
+The campsite is in a large field at the foot of Butser Hill, the second highest hill in the South Downs. Strangely it takes a while to find a good pitch for your tent when you have the entire campsite to yourself. After a quick meal of noodles I decided to test out my legs by walking to the top of Butser Hill. A few minutes later on I was on the top and admiring the view over Havent, the Solent and onto the Isle of Wight in the distance.
 
 As I returned to the campsite, the temperature suddenly dropped so I dived into down sleeping bag (which I had previously questioned bringing) and emersed myself in a book. A few minutes a fellow competitor ‘Billy’ turned up – I was no longer I alone!
 

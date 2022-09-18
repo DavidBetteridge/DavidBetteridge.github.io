@@ -2,7 +2,7 @@ Hi,  I'm one of the co-founders/treasurer of [YorkDevelopers.org](https://YorkDe
 
 ### Skills
 
-I've got over 20 years of experience as a professional software developer.  During that time I've used a number of different programming languages and technologies.  My current area of expertise is on the Microsoft Stack (C#, F#, SQL Server, Windows and .net Core).  
+I've got over 20 years of experience as a professional software developer.  During that time I've used a number of different programming languages and technologies.  My current area of expertise is on Python, React.js, AWS and Postgres.  Previously I was using the Microsoft Stack (C#, F#, SQL Server, Windows and .net Core).  
 
 I've also got a keen interest in Cyber Security,  and have completed twice in the Masterclass final of the [Cyber Security Challenge](https://www.cybersecuritychallenge.org.uk/).
 
@@ -14,5 +14,5 @@ In 2018 I completed the Winter Spine race along the length of the Pennine Way.  
 
 ### Contact me
 
-If you wish to contact me then I'm @da_betteridge on Twitter,  or come and find me at the Code-and-Coffee meetup in York each Monday and Wednesday morning.
+If you wish to contact me then I'm [@da_betteridge](https://twitter.com/da_betteridge) on Twitter, [dbetteridge](https://www.linkedin.com/in/dbetteridge/) in Linkedin or come and find me at the [Code-and-Coffee](https://www.meetup.com/yorkdevelopers/) meetup in York each Wednesday morning.
 
