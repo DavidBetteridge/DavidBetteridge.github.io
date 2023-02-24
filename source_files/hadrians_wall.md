@@ -37,11 +37,22 @@ By the time I reached 'Banks' I was getting a little bit fed up the constant sli
 
 My aim for the first day was to reach Greenhead,  this is where the path joins the Pennine Way and starts to become 'interesting'. Other than a couple of closed pubs I still hadn't passed any shops and was running very low on water.  From memory however I knew there was a tap in carpark at Walltown Country Park.  Ignoring the "this is not drinking water signs" I topped up and planned what to do next.  It was still quite early (10pm) I wanted to try get to the half way point (at 42 miles).
 
-The 
+Visability really became an issue at this point.  Had a bit of a scary moment where I had wondered off the path and became disorientated. I gave up at this point and pulled my GPS out of my bag,  as I waited for it to find some satellites I noticed the path was in fact only a meter to my left!  Even with the help of my GPS navigation for the remaining couple of miles was not straight forward.  
 
+Eventually made it to the second quarry carpark and decided it was a good place to spend the night. I set up camp under the picnic table,  charged my watch and settled down to sleep.
+About an hour later (1:30am) a car drove into the car park at speed,  spotted me and zoomed off again.  They returned a couple of minutes later to enquire if I was OK and then left again.  Five minutes later they returned once more,  parked and a young lady got out.  She came over and enquired if her "friend" had "dropped" anything near the picnic table.  I pointed her in the direction of the small suprision looking bag of white tablets under the table.  She grabbed it,  politly appologised for waking me and off she went! 
 
 
 ## Day 2
+After quite a bad nights sleep I got up at about 5:30am,  ate breakfast, packed up and filled up my water bottle.  By 6am I was on the move just as the sun was beganning to lighten the sky.
+
+It was still dark and the wet grass made the path hard work.  Going up hill was fine but I kept losing my footing on the descents.  After a couple of miles the path splits from the Pennine Way,  and once again I was into new territory.  The route continues climbing over another couple of hills (quite a good section) before rejoining the road.  The path then follows the side of the road for miles and miles.  Although not as interesting, it is much easier to make progress.
+
+The route is well signed posted, and includes the distance to the next village/town,  these are normally not more that 3 miles away. These are good from a mental prospective as it helps you break down the journey.  Reaching the sign that told me the end was 25 miles away was a bit disheartening as I had calculated it was only 20 miles away - oh well!
+
+
+
+
 
 ## Kit List
 
