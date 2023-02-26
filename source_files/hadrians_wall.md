@@ -84,7 +84,9 @@ In my somewhat tired state, I then found it quite hard to find a route up the hi
 * Sandwiches,  Kendal mint cake,  4xSnickers and 3xTrekbars
 
 ### Extras
+
 Things I could have taken
+
 * Sleeping bag liner
 * Spare Torch (or batteries)
 * Reflective Top
