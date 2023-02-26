@@ -50,6 +50,16 @@ It was still dark and the wet grass made the path hard work.  Going up hill was 
 
 The route is well signed posted, and includes the distance to the next village/town,  these are normally not more that 3 miles away. These are good from a mental prospective as it helps you break down the journey.  Reaching the sign that told me the end was 25 miles away was a bit disheartening as I had calculated it was only 20 miles away - oh well!
 
+At the village of Chollerford the first place to purchase food directly on the route is passed.  This is a nice little cafe called "The Riverside Kitchen".  I treated myself to a cup of tea and a cheese scone. I made the mistake of asking for a take away,  the scone was then lovingly placed in a box,  with a sealed dish of butter,  and a knife.  This was rapidly turning into the scene with Rowan Atkinson in the film Love Actually! Escaping from the Cafe I crossed the bridge over the North Tyne and scoffed my snack, which could well be the nicest scone I've ever had!
+
+After the bridge their is an "optional" diversion to avoid the main road, and then you are soon following the straight military road once. After passing one of the many forts I met a couple of walkers, doing the wall in sections.  One of their first questions was "Have you done the Spine Race!"
+
+Eventually the path diverges from the wall and you enter the town of Heddon-on-the-Wall. This has a petrol station with a Spar shop providing a good place to stock up on drinks. I think there is a footpath almost next to the petrol station,  but I missed it and took a very slight detour along the road. After leaving Heddon-on-the-Wall you cross a golf course and join an old railway line at the edge of the river Tyne. It is easy to make the mistake of thinking you are near the end at this point - you aren't - there are still a number of miles to do!. The route follows a decent footpath but the inside of left my ankle was beginning to hurt,  making it less painful to walk rather than run.
+
+Reaching Newcastle I had a bit of a choice between shopping at the train station or continuing on another 4 miles to the official finish at "Wallsend". As my ankle was getting quite sore I decided to call it a day,  and return another day to run from the station right to the coast at South Shields.
+In my somewhat tired state, I then found it quite hard to find a route up the hill to the train station. In the end I followed some chap up some very dodgy looking "Long Steps" which emerges near-ish the station.
+
+
 
 
 
