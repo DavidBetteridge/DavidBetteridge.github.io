@@ -8,4 +8,6 @@ I've been plotting my more interesting (and longer runs) on a [map.](/running/in
 
 During the Summer of 2022 I (accidentally) entered two 100 mile races a week apart. These were the [Peak District 100](/target_files/peak_district_100.html) and [South Downs 100](/target_files/south_downs_100.html)
 
-My most recent adventure was a solo fastpack along [Hadrian's Wall](/target_files/hadrians_wall.html)
+At part of my training for the line I solo fastpacked along [Hadrian's Wall](/target_files/hadrians_wall.html)
+
+In the summer of 2023 I successfully completed the [line race.](/TheLine.pdf)
