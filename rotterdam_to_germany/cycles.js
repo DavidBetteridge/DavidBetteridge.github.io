@@ -59,7 +59,7 @@ function displayRoute(xmlFile, map, colour) {
     {
         var client = new XMLHttpRequest();
         client.onreadystatechange = handler;
-        client.open("GET", "/london_to_paris/data/" + xmlFile);
+        client.open("GET", "/rotterdam_to_germany/data/" + xmlFile);
         client.send();
     }
     else
