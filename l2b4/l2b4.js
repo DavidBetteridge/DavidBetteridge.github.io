@@ -1,7 +1,7 @@
 var map = L.map('map').setView([51.505, -0.09], 13);
 
 var marker = new L.marker([51.4, 0.3], { opacity: 0.01 }); //opacity may be set to zero
-marker.bindTooltip("London -> Brighton -> London -> Brighton -> London<br>David Betteridge, Kendra Wedgewood<br>Friday 16th August 2024, 270 miles in 118 hours", {permanent: true, className: "my-label", offset: [0, 0] });
+marker.bindTooltip("London -> Brighton -> London -> Brighton -> London<br>David Betteridge, Kendra Wedgwood<br>Friday 16th August 2024, 270 miles in 118 hours", {permanent: true, className: "my-label", offset: [0, 0] });
 marker.addTo(map);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
