@@ -6,15 +6,15 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-// Dev code
-var popup = L.popup();
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
-}
-map.on('click', onMapClick);
+// // Dev code
+// var popup = L.popup();
+// function onMapClick(e) {
+//     popup
+//         .setLatLng(e.latlng)
+//         .setContent('  ' + e.latlng.toString() + '   ')
+//         .openOn(map);
+// }
+// map.on('click', onMapClick);
 
 
 // Draw our route
@@ -48,45 +48,44 @@ addMarker(51.073277, -0.109735, 'Long Road    ', '');
 addMarker(51.092553, -0.122523, 'School', ''); 
 addMarker(51.114744, -0.104027, 'Cafe', ''); 
 addMarker(51.118583, -0.107009, 'Stately Home', ''); 
-
-// addMarker(0,0, 'Pub', ''); 
-// addMarker(0,0, 'Airplane City', ''); 
-// addMarker(0,0, 'Kendra’s House', ''); 
-// addMarker(0,0, 'The tree', ''); 
-// addMarker(0,0, 'Annoying Windmill', ''); 
+addMarker(51.148286, -0.099478, 'Pub', ''); 
+addMarker(51.176989, -0.102332, 'Airplane City', '');   //?
+addMarker(51.172354, -0.102557, 'Kendra’s House', '');  //?
+addMarker(51.181085, -0.102139, 'The tree', '');  //?
+addMarker(51.193646, -0.101838, 'Annoying Windmill', ''); 
 // addMarker(0,0, 'Blue Denim Skirt Stile', ''); 
-// addMarker(0,0, 'Farmers Fields', ''); 
-// addMarker(0,0, 'Motorway', ''); 
-// addMarker(0,0, 'Railway Crossing', ''); 
-// addMarker(0,0, 'Ploughed Field', ''); 
-// addMarker(0,0, 'Donkeys', ''); 
-// addMarker(0,0, 'Steep Road', ''); 
-// addMarker(0,0, 'Cow Diversion', ''); 
-// addMarker(0,0, 'M25', ''); 
-// addMarker(0,0, 'Goat Mountain', ''); 
-// addMarker(0,0, 'North Downs Way', ''); 
-// addMarker(0,0, 'Fat pigs', ''); 
-// addMarker(0,0, 'Misty Valley', ''); 
-// addMarker(0,0, 'Bike Hill', ''); 
-// addMarker(0,0, 'Best Pizza Shop everrrr', ''); 
-// addMarker(0,0, 'Not Ducks', ''); 
-// addMarker(0,0, 'Corner Shop', ''); 
-// addMarker(0,0, 'Bell Tower', ''); 
-// addMarker(0,0, 'Busy Road', ''); 
-// addMarker(0,0, 'Golf Courses', ''); 
-// addMarker(0,0, 'Nonsuch Park', ''); 
-// addMarker(0,0, 'Builders House', ''); 
-// addMarker(0,0, 'Stoneleigh Station', ''); 
-// addMarker(0,0, 'Co-op', ''); 
-// addMarker(0,0, 'ZigZags', ''); 
-// addMarker(0,0, 'Longest school in the world ', ''); 
-// addMarker(0,0, 'Kingston', ''); 
-// addMarker(0,0, 'Real Ducks', ''); 
-// addMarker(0,0, 'YMCA', ''); 
-// addMarker(0,0, 'McDonalds', ''); 
-// addMarker(0,0, 'Big Ben', '');
-
-
+addMarker(51.217126, -0.114777, 'Farmers Fields', ''); 
+addMarker(51.225163, -0.116397, 'Railway Crossing', '');
+addMarker(51.229416, -0.113962, 'Motorway', ''); 
+addMarker(51.232943, -0.111859, 'Ploughed Field', ''); 
+addMarker(51.237377, -0.106806, 'Donkeys', ''); 
+addMarker(51.23876, -0.105593, 'Steep Road', ''); 
+addMarker(51.248566, -0.105743, 'Cow Diversion', ''); 
+addMarker(51.258276, -0.101302, 'M25', ''); 
+addMarker(51.266755, -0.10938, 'Goat Mountain', ''); 
+addMarker(51.270648, -0.1119660, 'North Downs Way', ''); 
+addMarker(51.27875, -0.112889, 'Fat pigs', ''); 
+addMarker(51.291137, -0.117116, 'Misty Valley', ''); 
+addMarker(51.30069, -0.1337890, 'Bike Hill', ''); 
+addMarker(51.319335, -0.139089, 'Best Pizza Shop everrrr', ''); 
+addMarker(51.322902, -0.162392, 'Not Ducks', ''); 
+addMarker(51.324263, -0.170513, 'Corner Shop', ''); 
+addMarker(51.324068, -0.194342, 'Bell Tower', ''); 
+addMarker(51.329874, -0.208633, 'Busy Road', ''); 
+addMarker(51.335183, -0.210639, 'Golf Courses', ''); 
+addMarker(51.355067, -0.230659, 'Nonsuch Park', ''); 
+addMarker(51.360473, -0.242815, 'Builders House', ''); 
+addMarker(51.363421, -0.248823, 'Stoneleigh Station', ''); 
+addMarker(51.384969, -0.26239, 'Co-op', ''); 
+addMarker(51.38814, -0.262642, 'ZigZags', ''); 
+addMarker(51.39131, -0.263634, 'Subway', '');
+addMarker(51.395404, -0.271086, 'Longest school in the world ', ''); 
+addMarker(51.411119, -0.308733, 'Blue Bridge', ''); 
+addMarker(51.418292, -0.306416, 'Real Ducks', ''); 
+addMarker(51.426909, -0.309108, 'YMCA', ''); 
+addMarker(51.476619, -0.226137, '1066 Start', ''); 
+addMarker(51.462617, -0.186639, 'McDonalds', ''); 
+addMarker(51.500889, -0.123897, 'Big Ben', '')
 
 
 function addMarker(lat, long, title, image) {
