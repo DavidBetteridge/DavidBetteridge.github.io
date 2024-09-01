@@ -6,15 +6,15 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-// // Dev code
-// var popup = L.popup();
-// function onMapClick(e) {
-//     popup
-//         .setLatLng(e.latlng)
-//         .setContent('  ' + e.latlng.toString() + '   ')
-//         .openOn(map);
-// }
-// map.on('click', onMapClick);
+// Dev code
+var popup = L.popup();
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent('  ' + e.latlng.toString() + '   ')
+        .openOn(map);
+}
+map.on('click', onMapClick);
 
 
 // Draw our route
@@ -46,12 +46,12 @@ addMarker(51.055774, -0.088706, 'Show Ground', 'showground.jpg');
 addMarker(51.061304, -0.100679, 'Unmemorable Bridge', 'bridge.jpg'); 
 addMarker(51.073277, -0.109735, 'Long Road', 'longroad.jpg'); 
 addMarker(51.092553, -0.122523, 'School', 'school.jpg'); 
-addMarker(51.114744, -0.104027, 'Cafe', ''); 
-addMarker(51.118583, -0.107009, 'Stately Home', ''); 
-addMarker(51.148286, -0.099478, 'Pub', ''); 
-addMarker(51.176989, -0.102332, 'Airplane City', '');   //?
-addMarker(51.172354, -0.102557, 'Kendra’s House', 'kendrahouse.jpg');  //?
-addMarker(51.181085, -0.102139, 'The tree', '');  //?
+addMarker(51.114744, -0.104027, 'Cafe', 'cafe.jpg'); 
+addMarker(51.118583, -0.107009, 'Stately Home', 'stately.jpg'); 
+addMarker(51.148286, -0.099478, 'Pub', 'pub.jpg'); 
+addMarker(51.15768, -0.100937, 'Airplane City', 'airplanecity.jpg');
+addMarker(51.172354, -0.102557, 'Kendra’s House', 'kendrahouse.jpg');
+addMarker(51.181085, -0.102139, 'The tree', 'tree.jpg');
 addMarker(51.193646, -0.101838, 'Annoying Windmill', 'windmill.jpeg'); 
 // addMarker(0,0, 'Blue Denim Skirt Stile', ''); 
 addMarker(51.217126, -0.114777, 'Farmers Fields', 'farmersfields.jpeg'); 
@@ -59,10 +59,10 @@ addMarker(51.225163, -0.116397, 'Railway Crossing', 'railwaycrossing.jpeg');
 addMarker(51.229416, -0.113962, 'Motorway', 'motorway.jpeg'); 
 addMarker(51.232943, -0.111859, 'Ploughed Field', 'ploughedfield.jpeg'); 
 addMarker(51.237377, -0.106806, 'Donkeys', 'donkeys.jpeg'); 
-addMarker(51.23876, -0.105593, 'Steep Road', ''); 
-addMarker(51.248566, -0.105743, 'Cow Diversion', ''); 
-addMarker(51.258276, -0.101302, 'M25', ''); 
-addMarker(51.266755, -0.10938, 'Goat Mountain', ''); 
+addMarker(51.23876, -0.105593, 'Steep Road', 'steep.jpg'); 
+addMarker(51.248566, -0.105743, 'Cow Diversion', 'cow_diversion.jpg'); 
+addMarker(51.258276, -0.101302, 'M25', 'm25.jpg'); 
+addMarker(51.266755, -0.10938, 'Goat Mountain', 'goatmountain.jpg'); 
 addMarker(51.270648, -0.1119660, 'North Downs Way', ''); 
 addMarker(51.27875, -0.112889, 'Fat pigs', 'fatpigs.jpeg'); 
 addMarker(51.291137, -0.117116, 'Misty Valley', ''); 
