@@ -63,29 +63,29 @@ addMarker(51.23876, -0.105593, 'Steep Road', 'steep.jpg');
 addMarker(51.248566, -0.105743, 'Cow Diversion', 'cow_diversion.jpg'); 
 addMarker(51.258276, -0.101302, 'M25', 'm25.jpg'); 
 addMarker(51.266755, -0.10938, 'Goat Mountain', 'goatmountain.jpg'); 
-addMarker(51.270648, -0.1119660, 'North Downs Way', ''); 
+addMarker(51.270648, -0.1119660, 'North Downs Way', 'ndw.jpg'); 
 addMarker(51.27875, -0.112889, 'Fat pigs', 'fatpigs.jpeg'); 
-addMarker(51.291137, -0.117116, 'Misty Valley', ''); 
-addMarker(51.30069, -0.1337890, 'Bike Hill', ''); 
+addMarker(51.291137, -0.117116, 'Misty Valley', 'mistyvalley.jpg'); 
+addMarker(51.30069, -0.1337890, 'Bike Hill', 'bikehill.jpg'); 
 addMarker(51.319335, -0.139089, 'Best Pizza Shop everrrr', 'pizza.jpeg'); 
-addMarker(51.322902, -0.162392, 'Not Ducks', ''); 
-addMarker(51.324263, -0.170513, 'Corner Shop', ''); 
-addMarker(51.324068, -0.194342, 'Bell Tower', ''); 
-addMarker(51.329874, -0.208633, 'Busy Road', ''); 
-addMarker(51.335183, -0.210639, 'Golf Courses', ''); 
-addMarker(51.355067, -0.230659, 'Nonsuch Park', ''); 
+addMarker(51.322902, -0.162392, 'Not Ducks', 'notducks.jpg'); 
+addMarker(51.324263, -0.170513, 'Corner Shop', 'cornershop.jpg'); 
+addMarker(51.324068, -0.194342, 'Bell Tower', 'belltower.jpg'); 
+addMarker(51.329874, -0.208633, 'Busy Road', 'busyroad.jpg'); 
+addMarker(51.335183, -0.210639, 'Golf Courses', 'golf.jpg'); 
+addMarker(51.355067, -0.230659, 'Nonsuch Park', 'nonsuch.jpg'); 
 addMarker(51.360473, -0.242815, 'Builders House', 'buildershouse.jpeg'); 
-addMarker(51.363421, -0.248823, 'Stoneleigh Station', ''); 
-addMarker(51.384969, -0.26239, 'Co-op', ''); 
-addMarker(51.38814, -0.262642, 'ZigZags', ''); 
-addMarker(51.39131, -0.263634, 'Subway', '');
-addMarker(51.395404, -0.271086, 'Longest school in the world ', ''); 
-addMarker(51.411119, -0.308733, 'Blue Bridge', ''); 
-addMarker(51.418292, -0.306416, 'Real Ducks', ''); 
-addMarker(51.426909, -0.309108, 'YMCA', ''); 
-addMarker(51.476619, -0.226137, '1066 Start', ''); 
-addMarker(51.462617, -0.186639, 'McDonalds', ''); 
-addMarker(51.500889, -0.123897, 'Big Ben', '')
+addMarker(51.363421, -0.248823, 'Stoneleigh Station', 'stoneleigh.jpg'); 
+addMarker(51.384969, -0.26239, 'Co-op', 'coop.jpg'); 
+addMarker(51.38814, -0.262642, 'ZigZags', 'zigzags.jpg'); 
+addMarker(51.39131, -0.263634, 'Subway', 'subway.jpg');
+addMarker(51.395404, -0.271086, 'Longest school in the world ', 'longestschool.jpg'); 
+addMarker(51.411119, -0.308733, 'Blue Bridge', 'bluebridge.jpg'); 
+addMarker(51.418292, -0.306416, 'Real Ducks', 'realducks.jpg'); 
+addMarker(51.426909, -0.309108, 'YMCA', 'ymca.jpg'); 
+addMarker(51.476619, -0.226137, '1066 Start', '1066.jpg'); 
+addMarker(51.462617, -0.186639, 'McDonalds', 'mcdonalds.jpg'); 
+addMarker(51.500889, -0.123897, 'Big Ben', 'bigben.jpg')
 
 
 function addMarker(lat, long, title, image) {
