@@ -1,20 +1,23 @@
 var map = L.map('map').setView([51.505, -0.09], 13);
 
+var marker = new L.marker([51.4, 0.3], { opacity: 0.01 }); //opacity may be set to zero
+marker.bindTooltip("London -> Brighton -> London -> Brighton -> London<br>David Betteridge, Kendra Wedgewood<br>Friday 16th August 2024, 270 miles in 118 hours", {permanent: true, className: "my-label", offset: [0, 0] });
+marker.addTo(map);
+
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-
-// Dev code
-var popup = L.popup();
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent('  ' + e.latlng.toString() + '   ')
-        .openOn(map);
-}
-map.on('click', onMapClick);
+// // Dev code
+// var popup = L.popup();
+// function onMapClick(e) {
+//     popup
+//         .setLatLng(e.latlng)
+//         .setContent('  ' + e.latlng.toString() + '   ')
+//         .openOn(map);
+// }
+// map.on('click', onMapClick);
 
 
 // Draw our route
@@ -28,19 +31,19 @@ map.fitBounds(path.getBounds());
 
 // Add locations along the route
 markers = [];
-addMarker(markers, 50.819221, -0.136557, "Brighton Pier", "brightonpier.jpg");
-addMarker(markers, 50.825131, -0.11364, 'Brighton Mast Bivi', 'brightonmast.jpg'); 
-addMarker(markers, 50.829306, -0.109863, 'Racecourse', 'racecourse.jpg'); 
-addMarker(markers, 50.846421, -0.065918, 'Mast', 'mast.jpeg'); 
+addMarker(markers, 50.819221, -0.136557, "Brighton Pier (chips!)", "brightonpier.jpg");
+addMarker(markers, 50.825131, -0.11364, 'Brighton Mast Hotel', 'brightonmast.jpg'); 
+addMarker(markers, 50.829306, -0.109863, 'Never-ending Racecourse', 'racecourse.jpg'); 
+addMarker(markers, 50.846421, -0.065918, 'The correct mast', 'mast.jpeg'); 
 addMarker(markers, 50.866564, -0.055983, 'A27 (Cafe + Watertap)', 'a27.jpg'); 
-addMarker(markers, 50.91013, -0.06772, 'Horse College', 'plumpton.jpg'); 
-addMarker(markers, 50.920587, -0.078782, 'David’s House', 'davidshouse.jpg'); 
+addMarker(markers, 50.91013, -0.06772, 'Scary Horse College', 'plumpton.jpg'); 
+addMarker(markers, 50.920587, -0.078782, 'David’s House (Better than Kendra’s)', 'davidshouse.jpg'); 
 addMarker(markers, 50.93652, -0.079941, 'Vineyard', 'vineyard.jpg'); 
-addMarker(markers, 50.991137, -0.050908, 'Petrol Station', 'petrolstation.jpg'); 
+addMarker(markers, 50.991137, -0.050908, 'Petrol Station (with tap)', 'petrolstation.jpg'); 
 addMarker(markers, 51.002062, -0.058215, 'Attack of the killer horses', 'horseattack.jpg'); 
-addMarker(markers, 51.016212, -0.078278, 'Church (start of new route)', 'church.jpg'); 
-addMarker(markers, 51.023932, -0.092483, 'Sucide Road', 'suicideroad.jpg'); 
-addMarker(markers, 51.022528, -0.09819, 'Golf Course', 'hhgolf.jpg'); 
+addMarker(markers, 51.016212, -0.078278, 'Church (start of new route and sleep spot)', 'church.jpg'); 
+addMarker(markers, 51.023932, -0.092483, 'Suicide Road', 'suicideroad.jpg'); 
+addMarker(markers, 51.022528, -0.09819, 'Golf Course (with angry golfers)', 'hhgolf.jpg'); 
 addMarker(markers, 51.039478, -0.101194, 'Cows', 'cows.jpg'); 
 addMarker(markers, 51.042878, -0.099392, 'Reservoir', 'res.jpg'); 
 addMarker(markers, 51.055774, -0.088706, 'Show Ground', 'showground.jpg'); 
