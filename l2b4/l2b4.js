@@ -28,17 +28,17 @@ map.fitBounds(path.getBounds());
 
 // Add locations along the route
 addMarker(50.819221, -0.136557, "Brighton Pier", "brightonpier.jpg");
-addMarker(50.825131, -0.11364, 'Brighton Mast Bivi', ''); 
-addMarker(50.829306, -0.109863, 'Racecourse', ''); 
-addMarker(50.846421, -0.065918, 'Mast', ''); 
-addMarker(50.866564, -0.055983, 'A27 (Cafe + Watertap)', ''); 
-addMarker(50.91013, -0.06772, 'Horse College', ''); 
-addMarker(0.920587, -0.078782, 'David’s House', ''); 
-addMarker(50.93652, -0.079941, 'Vineyard', ''); 
-addMarker(50.991137, -0.050908, 'Petrol Station', ''); 
-addMarker(51.002062, -0.058215, 'Attack of the killer horses', ''); 
-addMarker(51.016212, -0.078278, 'Church (start of new route)', ''); 
-addMarker(51.023932, -0.092483, 'Sucide Road', ''); 
+addMarker(50.825131, -0.11364, 'Brighton Mast Bivi', 'brightonmast.jpg'); 
+addMarker(50.829306, -0.109863, 'Racecourse', 'racecourse.jpg'); 
+addMarker(50.846421, -0.065918, 'Mast', 'mast.jpeg'); 
+addMarker(50.866564, -0.055983, 'A27 (Cafe + Watertap)', 'a27.jpg'); 
+addMarker(50.91013, -0.06772, 'Horse College', 'plumpton.jpg'); 
+addMarker(50.920587, -0.078782, 'David’s House', 'davidshouse.jpg'); 
+addMarker(50.93652, -0.079941, 'Vineyard', 'vineyard.jpg'); 
+addMarker(50.991137, -0.050908, 'Petrol Station', 'petrolstation.jpg'); 
+addMarker(51.002062, -0.058215, 'Attack of the killer horses', 'horseattack.jpg'); 
+addMarker(51.016212, -0.078278, 'Church (start of new route)', 'church.jpg'); 
+addMarker(51.023932, -0.092483, 'Sucide Road', 'suicideroad.jpg'); 
 addMarker(51.022528, -0.09819, 'Golf Course', ''); 
 addMarker(51.039478, -0.101194, 'Cows', ''); 
 addMarker(51.042878, -0.099392, 'Reservoir', ''); 
@@ -50,31 +50,31 @@ addMarker(51.114744, -0.104027, 'Cafe', '');
 addMarker(51.118583, -0.107009, 'Stately Home', ''); 
 addMarker(51.148286, -0.099478, 'Pub', ''); 
 addMarker(51.176989, -0.102332, 'Airplane City', '');   //?
-addMarker(51.172354, -0.102557, 'Kendra’s House', '');  //?
+addMarker(51.172354, -0.102557, 'Kendra’s House', 'kendrahouse.jpg');  //?
 addMarker(51.181085, -0.102139, 'The tree', '');  //?
-addMarker(51.193646, -0.101838, 'Annoying Windmill', ''); 
+addMarker(51.193646, -0.101838, 'Annoying Windmill', 'windmill.jpeg'); 
 // addMarker(0,0, 'Blue Denim Skirt Stile', ''); 
-addMarker(51.217126, -0.114777, 'Farmers Fields', ''); 
-addMarker(51.225163, -0.116397, 'Railway Crossing', '');
-addMarker(51.229416, -0.113962, 'Motorway', ''); 
-addMarker(51.232943, -0.111859, 'Ploughed Field', ''); 
-addMarker(51.237377, -0.106806, 'Donkeys', ''); 
+addMarker(51.217126, -0.114777, 'Farmers Fields', 'farmersfields.jpeg'); 
+addMarker(51.225163, -0.116397, 'Railway Crossing', 'railwaycrossing.jpeg');
+addMarker(51.229416, -0.113962, 'Motorway', 'motorway.jpeg'); 
+addMarker(51.232943, -0.111859, 'Ploughed Field', 'ploughedfield.jpeg'); 
+addMarker(51.237377, -0.106806, 'Donkeys', 'donkeys.jpeg'); 
 addMarker(51.23876, -0.105593, 'Steep Road', ''); 
 addMarker(51.248566, -0.105743, 'Cow Diversion', ''); 
 addMarker(51.258276, -0.101302, 'M25', ''); 
 addMarker(51.266755, -0.10938, 'Goat Mountain', ''); 
 addMarker(51.270648, -0.1119660, 'North Downs Way', ''); 
-addMarker(51.27875, -0.112889, 'Fat pigs', ''); 
+addMarker(51.27875, -0.112889, 'Fat pigs', 'fatpigs.jpeg'); 
 addMarker(51.291137, -0.117116, 'Misty Valley', ''); 
 addMarker(51.30069, -0.1337890, 'Bike Hill', ''); 
-addMarker(51.319335, -0.139089, 'Best Pizza Shop everrrr', ''); 
+addMarker(51.319335, -0.139089, 'Best Pizza Shop everrrr', 'pizza.jpeg'); 
 addMarker(51.322902, -0.162392, 'Not Ducks', ''); 
 addMarker(51.324263, -0.170513, 'Corner Shop', ''); 
 addMarker(51.324068, -0.194342, 'Bell Tower', ''); 
 addMarker(51.329874, -0.208633, 'Busy Road', ''); 
 addMarker(51.335183, -0.210639, 'Golf Courses', ''); 
 addMarker(51.355067, -0.230659, 'Nonsuch Park', ''); 
-addMarker(51.360473, -0.242815, 'Builders House', ''); 
+addMarker(51.360473, -0.242815, 'Builders House', 'buildershouse.jpeg'); 
 addMarker(51.363421, -0.248823, 'Stoneleigh Station', ''); 
 addMarker(51.384969, -0.26239, 'Co-op', ''); 
 addMarker(51.38814, -0.262642, 'ZigZags', ''); 
@@ -90,7 +90,7 @@ addMarker(51.500889, -0.123897, 'Big Ben', '')
 
 function addMarker(lat, long, title, image) {
     var marker = L.marker([lat, long]).addTo(map);
-    marker.bindPopup("<b>" + title + "</b><br><img width='100px' src='img/" + image + "' />");
+    marker.bindPopup("<b>" + title + "</b><br><img width='200px' src='img/" + image + "' />");
 }
 
 function latLongs() {
