@@ -9,6 +9,17 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+var foodIcon = L.icon({
+    iconUrl: 'img/food.svg',
+    //shadowUrl: 'img/leaf-green.png',
+
+    iconSize:     [38, 95], // size of the icon
+  //  shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 70], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -40] // point from which the popup should open relative to the iconAnchor
+});
+
 // // Dev code
 // var popup = L.popup();
 // function onMapClick(e) {
@@ -31,28 +42,28 @@ map.fitBounds(path.getBounds());
 
 // Add locations along the route
 markers = [];
-addMarker(markers, 50.819221, -0.136557, "Brighton Pier (chips)", "brightonpier.jpg");
+addFoodMarker(markers, 50.819221, -0.136557, "Brighton Pier (chips)", "brightonpier.jpg", true);
 addMarker(markers, 50.825131, -0.11364, 'Brighton Mast Hotel', 'brightonmast.jpg'); 
 addMarker(markers, 50.829306, -0.109863, 'Never-ending Racecourse', 'racecourse.jpg'); 
 addMarker(markers, 50.846421, -0.065918, 'Mast (The correct one)', 'mast.jpeg'); 
-addMarker(markers, 50.866564, -0.055983, 'A27 (Cafe + Watertap)', 'a27.jpg'); 
+addFoodMarker(markers, 50.866564, -0.055983, 'A27 (Cafe + Watertap)', 'a27.jpg'); 
 addMarker(markers, 50.91013, -0.06772, 'Scary Horse College', 'plumpton.jpg'); 
 addMarker(markers, 50.920587, -0.078782, 'David’s House (Better than Kendra’s)', 'davidshouse.jpg'); 
 addMarker(markers, 50.93652, -0.079941, 'Vineyard', 'vineyard.jpg'); 
-addMarker(markers, 50.991137, -0.050908, 'Petrol Station (with microwave)', 'petrolstation.jpg'); 
+addFoodMarker(markers, 50.991137, -0.050908, 'Petrol Station (with microwave)', 'petrolstation.jpg'); 
 addMarker(markers, 51.002062, -0.058215, 'Attack of the killer horses', 'horseattack.jpg'); 
 addMarker(markers, 51.016212, -0.078278, 'Church (new route and sleep spot)', 'church.jpg'); 
 addMarker(markers, 51.023932, -0.092483, 'Suicide Road', 'suicideroad.jpg'); 
 addMarker(markers, 51.022528, -0.09819, 'Golf Course (with angry golfers)', 'hhgolf.jpg'); 
 addMarker(markers, 51.039478, -0.101194, 'Cows', 'cows.jpg'); 
-addMarker(markers, 51.042878, -0.099392, 'Reservoir', 'res.jpg'); 
+addFoodMarker(markers, 51.042878, -0.099392, 'Reservoir', 'res.jpg'); 
 addMarker(markers, 51.055774, -0.088706, 'Showground', 'showground.jpg'); 
 addMarker(markers, 51.061304, -0.100679, 'Unmemorable Bridge', 'bridge.jpg'); 
 addMarker(markers, 51.073277, -0.109735, 'Long Road', 'longroad.jpg'); 
 addMarker(markers, 51.092553, -0.122523, 'School', 'school.jpg'); 
-addMarker(markers, 51.114744, -0.104027, 'Cafe', 'cafe.jpg'); 
+addFoodMarker(markers, 51.114744, -0.104027, 'Cafe', 'cafe.jpg'); 
 addMarker(markers, 51.118583, -0.107009, 'Stately Home', 'stately.jpg'); 
-addMarker(markers, 51.148286, -0.099478, 'Pub', 'pub.jpg'); 
+addFoodMarker(markers, 51.148286, -0.099478, 'Pub', 'pub.jpg'); 
 addMarker(markers, 51.15768, -0.100937, 'Airplane City', 'airplanecity.jpg');
 addMarker(markers, 51.172354, -0.102557, 'Kendra’s House', 'kendrahouse.jpg');
 addMarker(markers, 51.181085, -0.102139, 'The tree', 'tree.jpg');
@@ -71,25 +82,25 @@ addMarker(markers, 51.270648, -0.1119660, 'North Downs Way', 'ndw.jpg');
 addMarker(markers, 51.27875, -0.112889, 'Fat pigs', 'fatpigs.jpeg'); 
 addMarker(markers, 51.291137, -0.117116, 'Misty Valley', 'mistyvalley.jpg'); 
 addMarker(markers, 51.30069, -0.1337890, 'Bike Hill', 'bikehill.jpg'); 
-addMarker(markers, 51.319335, -0.139089, 'Best Pizza Shop everrrr', 'pizza.jpeg'); 
+addFoodMarker(markers, 51.319335, -0.139089, 'Best Pizza Shop everrrr', 'pizza.jpeg'); 
 addMarker(markers, 51.322902, -0.162392, 'Not Ducks', 'notducks.jpg'); 
-addMarker(markers, 51.324263, -0.170513, 'Corner Shop', 'cornershop.jpg'); 
+addFoodMarker(markers, 51.324263, -0.170513, 'Corner Shop', 'cornershop.jpg'); 
 addMarker(markers, 51.324068, -0.194342, 'Bell Tower', 'belltower.jpg'); 
 addMarker(markers, 51.329874, -0.208633, 'Busy Road', 'busyroad.jpg'); 
 addMarker(markers, 51.335183, -0.210639, 'Golf Courses', 'golf.jpg'); 
 addMarker(markers, 51.355067, -0.230659, 'Nonsuch Park', 'nonsuch.jpg'); 
 addMarker(markers, 51.360473, -0.242815, 'Builders House (tap)', 'buildershouse.jpeg'); 
 addMarker(markers, 51.363421, -0.248823, 'Stoneleigh Station', 'stoneleigh.jpg'); 
-addMarker(markers, 51.384969, -0.26239, 'Co-op', 'coop.jpg'); 
+addFoodMarker(markers, 51.384969, -0.26239, 'Co-op', 'coop.jpg'); 
 addMarker(markers, 51.38814, -0.262642, 'Zig-Zags', 'zigzags.jpg'); 
 addMarker(markers, 51.39131, -0.263634, 'Subway', 'subway.jpg');
 addMarker(markers, 51.395404, -0.271086, 'Longest school in the world ', 'longestschool.jpg'); 
-addMarker(markers, 51.411119, -0.308733, 'Blue Bridge', 'bluebridge.jpg'); 
+addFoodMarker(markers, 51.411119, -0.308733, 'Blue Bridge', 'bluebridge.jpg'); 
 addMarker(markers, 51.418292, -0.306416, 'Real Ducks', 'realducks.jpg'); 
 addMarker(markers, 51.426909, -0.309108, 'YMCA', 'ymca.jpg'); 
 addMarker(markers, 51.476619, -0.226137, '1066 Start', '1066.jpg'); 
-addMarker(markers, 51.462617, -0.186639, 'McDonalds', 'mcdonalds.jpg'); 
-addMarker(markers, 51.500889, -0.123897, 'Big Ben', 'bigben.jpg', true);
+addFoodMarker(markers, 51.462617, -0.186639, 'McDonalds', 'mcdonalds.jpg'); 
+addMarker(markers, 51.500889, -0.123897, 'Big Ben', 'bigben.jpg');
 
 
 function previous(markers, index) {
@@ -100,10 +111,16 @@ function next(markers, index) {
     markers[index + 1].openPopup();
 }
 
+function addFoodMarker(markers, lat, long, title, image, last) {
+    addMarker(markers, lat, long, title, image, last, true);        
+}
 
-function addMarker(markers, lat, long, title, image, last) {
+function addMarker(markers, lat, long, title, image, last, food = false) {
     var index = markers.length;
-    var marker = L.marker([lat, long]).addTo(map);
+    
+    var marker = food ? L.marker([lat, long], {icon: foodIcon}) : L.marker([lat, long]);
+    marker.addTo(map);
+
     var html = `<b>${title}</b><br><img width='200px' src='img/${image}'/><div class='btns'>`;
     if (index > 0) html += `<a href='javascript:previous(markers,${index})'>&lt; South</a>`;
     if (!last) html += `<a href='javascript:next(markers,${index})'>North &gt;</a>`;
