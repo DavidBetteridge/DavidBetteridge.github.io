@@ -102,6 +102,16 @@ addMarker(markers, 51.476619, -0.226137, '1066 Start', '1066.jpg');
 addFoodMarker(markers, 51.462617, -0.186639, 'McDonalds', 'mcdonalds.jpg'); 
 addMarker(markers, 51.500889, -0.123897, 'Big Ben', 'bigben.jpg');
 
+map.on('popupopen', function(ev){
+    var el = document.getElementById('fullScreenInfo');
+    el.innerHTML = ev.popup.getContent();
+    el.classList.add('visible');
+  });
+
+map.on('popupclose', function(ev){
+    var el = document.getElementById('fullScreenInfo');
+    el.classList.remove('visible');
+  });
 
 function previous(markers, index) {
     markers[index - 1].openPopup();
@@ -110,6 +120,11 @@ function previous(markers, index) {
 function next(markers, index) {
     markers[index + 1].openPopup();
 }
+
+function closePopup(markers, index) {
+    markers[index].closePopup();
+}
+
 
 function addFoodMarker(markers, lat, long, title, image, last) {
     addMarker(markers, lat, long, title, image, last, true);        
@@ -121,8 +136,9 @@ function addMarker(markers, lat, long, title, image, last, food = false) {
     var marker = food ? L.marker([lat, long], {icon: foodIcon}) : L.marker([lat, long]);
     marker.addTo(map);
 
-    var html = `<b>${title}</b><br><img width='200px' src='img/${image}'/><div class='btns'>`;
+    var html = `<b>${title}</b><br><img class='popupImage' src='img/${image}'/><div class='btns'>`;
     if (index > 0) html += `<a href='javascript:previous(markers,${index})'>&lt; South</a>`;
+    html += `<a href='javascript:closePopup(markers,${index})'>Close</a>`;
     if (!last) html += `<a href='javascript:next(markers,${index})'>North &gt;</a>`;
     marker.bindPopup(html);
     markers.push(marker);

@@ -1,4 +1,6 @@
-#map { height: 100vh; }
+#map {
+    height: 100vh;
+}
 
 .btns {
     padding: 0;
@@ -20,4 +22,31 @@
     font-weight: bold;
     text-align: center;
     cursor: pointer;
+}
+
+#fullScreenInfo {
+    display: none;
+}
+
+@media (min-width: 680px) {
+    .popupImage {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 680px) {
+    #fullScreenInfo.visible {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 9999;
+        background-color: white;
+        display: block;
+    }
+
+    .popupImage {
+        height: 90%;
+    }
 }
