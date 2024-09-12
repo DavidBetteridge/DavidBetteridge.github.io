@@ -10,7 +10,19 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var foodIcon = L.icon({
-    iconUrl: 'img/food.svg',
+    iconUrl: 'img/red.svg',
+    //shadowUrl: 'img/leaf-green.png',
+
+    // iconSize:     [30, 88], // size of the icon
+    iconSize:     [38, 95], // size of the icon
+  //  shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 70], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -40] // point from which the popup should open relative to the iconAnchor
+});
+
+var sleepingIcon = L.icon({
+    iconUrl: 'img/blue.svg',
     //shadowUrl: 'img/leaf-green.png',
 
     iconSize:     [38, 95], // size of the icon
@@ -43,7 +55,7 @@ map.fitBounds(path.getBounds());
 // Add locations along the route
 markers = [];
 addFoodMarker(markers, 50.819221, -0.136557, "Brighton Pier (chips)", "brightonpier.jpg", true);
-addMarker(markers, 50.825131, -0.11364, 'Brighton Mast Hotel', 'brightonmast.jpg'); 
+addSleepingMarker(markers, 50.825131, -0.11364, 'Brighton Mast Hotel', 'brightonmast.jpg'); 
 addMarker(markers, 50.829306, -0.109863, 'Never-ending Racecourse', 'racecourse.jpg'); 
 addMarker(markers, 50.846421, -0.065918, 'Mast (The correct one)', 'mast.jpeg'); 
 addFoodMarker(markers, 50.866564, -0.055983, 'A27 (Cafe + Watertap)', 'a27.jpg'); 
@@ -52,7 +64,7 @@ addMarker(markers, 50.920587, -0.078782, 'David’s House (Better than Kendra’
 addMarker(markers, 50.93652, -0.079941, 'Vineyard', 'vineyard.jpg'); 
 addFoodMarker(markers, 50.991137, -0.050908, 'Petrol Station (with microwave)', 'petrolstation.jpg'); 
 addMarker(markers, 51.002062, -0.058215, 'Attack of the killer horses', 'horseattack.jpg'); 
-addMarker(markers, 51.016212, -0.078278, 'Church (new route and sleep spot)', 'church.jpg'); 
+addSleepingMarker(markers, 51.016212, -0.078278, 'Church (new route and sleep spot)', 'church.jpg'); 
 addMarker(markers, 51.023932, -0.092483, 'Suicide Road', 'suicideroad.jpg'); 
 addMarker(markers, 51.022528, -0.09819, 'Golf Course (with angry golfers)', 'hhgolf.jpg'); 
 addMarker(markers, 51.039478, -0.101194, 'Cows', 'cows.jpg'); 
@@ -85,9 +97,9 @@ addMarker(markers, 51.30069, -0.1337890, 'Bike Hill', 'bikehill.jpg');
 addFoodMarker(markers, 51.319335, -0.139089, 'Best Pizza Shop everrrr', 'pizza.jpeg'); 
 addMarker(markers, 51.322902, -0.162392, 'Not Ducks', 'notducks.jpg'); 
 addFoodMarker(markers, 51.324263, -0.170513, 'Corner Shop', 'cornershop.jpg'); 
-addMarker(markers, 51.324068, -0.194342, 'Bell Tower', 'belltower.jpg'); 
+addMarker(markers, 51.324068, -0.194342, 'Bell Tower', 'belltower.jpg');   // addSleepingMarker
 addMarker(markers, 51.329874, -0.208633, 'Busy Road', 'busyroad.jpg'); 
-addMarker(markers, 51.335183, -0.210639, 'Golf Courses', 'golf.jpg'); 
+addSleepingMarker(markers, 51.335183, -0.210639, 'Golf Courses', 'golf.jpg'); 
 addMarker(markers, 51.355067, -0.230659, 'Nonsuch Park', 'nonsuch.jpg'); 
 addMarker(markers, 51.360473, -0.242815, 'Builders House (tap)', 'buildershouse.jpeg'); 
 addMarker(markers, 51.363421, -0.248823, 'Stoneleigh Station', 'stoneleigh.jpg'); 
@@ -97,7 +109,7 @@ addMarker(markers, 51.39131, -0.263634, 'Subway', 'subway.jpg');
 addMarker(markers, 51.395404, -0.271086, 'Longest school in the world ', 'longestschool.jpg'); 
 addFoodMarker(markers, 51.411119, -0.308733, 'Blue Bridge', 'bluebridge.jpg'); 
 addMarker(markers, 51.418292, -0.306416, 'Real Ducks', 'realducks.jpg'); 
-addMarker(markers, 51.426909, -0.309108, 'YMCA', 'ymca.jpg'); 
+addSleepingMarker(markers, 51.426909, -0.309108, 'YMCA', 'ymca.jpg'); 
 addMarker(markers, 51.476619, -0.226137, '1066 Start', '1066.jpg'); 
 addFoodMarker(markers, 51.462617, -0.186639, 'McDonalds', 'mcdonalds.jpg'); 
 addMarker(markers, 51.500889, -0.123897, 'Big Ben', 'bigben.jpg');
@@ -125,15 +137,18 @@ function closePopup(markers, index) {
     markers[index].closePopup();
 }
 
-
 function addFoodMarker(markers, lat, long, title, image, last) {
-    addMarker(markers, lat, long, title, image, last, true);        
+    addMarker(markers, lat, long, title, image, last, foodIcon);        
 }
 
-function addMarker(markers, lat, long, title, image, last, food = false) {
+function addSleepingMarker(markers, lat, long, title, image, last) {
+    addMarker(markers, lat, long, title, image, last, sleepingIcon);        
+}
+
+function addMarker(markers, lat, long, title, image, last, icon = null) {
     var index = markers.length;
     
-    var marker = food ? L.marker([lat, long], {icon: foodIcon}) : L.marker([lat, long]);
+    var marker = icon ? L.marker([lat, long], {icon: icon}) : L.marker([lat, long]);
     marker.addTo(map);
 
     var html = `<b>${title}</b><br><img class='popupImage' src='img/${image}'/><div class='btns'>`;
