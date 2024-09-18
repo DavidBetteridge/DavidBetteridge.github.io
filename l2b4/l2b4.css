@@ -12,13 +12,11 @@
 
 .btns a {
     display: block;
-    padding: 10px;
     background-color: #f1f1f1;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-decoration: none;
     color: #333;
-    font-size: 14px;
     font-weight: bold;
     text-align: center;
     cursor: pointer;
@@ -40,6 +38,11 @@
     .title {
         font-weight: bold;
     }
+
+    .btns a {
+        padding: 10px;
+        font-size: 14px;
+    }
 }
 
 @media (max-device-width: 680px) {
@@ -55,6 +58,29 @@
     }
 
     .popupImage {
-        height: 90%;
+        padding: 1rem;
+        max-width: 97%;
+    }
+
+    .description {
+        padding-left: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: xx-large;
+    }
+    .title {
+        padding-top: 1rem;
+        padding-left: 1rem;
+        font-weight: bold;
+        font-size: xx-large;
+    }
+
+    .btns {
+        margin: 1rem;
+        font-size: 24px;
+    }
+
+    .btns a {
+        padding: 1rem;
     }
 }
