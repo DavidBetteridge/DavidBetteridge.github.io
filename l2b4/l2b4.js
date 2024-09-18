@@ -32,15 +32,15 @@ var sleepingIcon = L.icon({
     popupAnchor:  [-3, -40] // point from which the popup should open relative to the iconAnchor
 });
 
-// Dev code
-var popup = L.popup();
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent('  ' + e.latlng.toString() + '   ')
-        .openOn(map);
-}
-map.on('click', onMapClick);
+// // Dev code
+// var popup = L.popup();
+// function onMapClick(e) {
+//     popup
+//         .setLatLng(e.latlng)
+//         .setContent('  ' + e.latlng.toString() + '   ')
+//         .openOn(map);
+// }
+// map.on('click', onMapClick);
 
 
 // Draw our route
