@@ -30,7 +30,15 @@
 
 @media (min-device-width: 680px) {
     .popupImage {
-        max-width: 200px;
+        width: 200px;
+    }
+    .description {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        width: 200px;
+    }
+    .title {
+        font-weight: bold;
     }
 }
 

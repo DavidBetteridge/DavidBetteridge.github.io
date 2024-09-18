@@ -32,15 +32,15 @@ var sleepingIcon = L.icon({
     popupAnchor:  [-3, -40] // point from which the popup should open relative to the iconAnchor
 });
 
-// // Dev code
-// var popup = L.popup();
-// function onMapClick(e) {
-//     popup
-//         .setLatLng(e.latlng)
-//         .setContent('  ' + e.latlng.toString() + '   ')
-//         .openOn(map);
-// }
-// map.on('click', onMapClick);
+// Dev code
+var popup = L.popup();
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent('  ' + e.latlng.toString() + '   ')
+        .openOn(map);
+}
+map.on('click', onMapClick);
 
 
 // Draw our route
@@ -54,65 +54,67 @@ map.fitBounds(path.getBounds());
 
 // Add locations along the route
 markers = [];
-addFoodMarker(markers, 50.819221, -0.136557, "Brighton Pier (chips)", "brightonpier.jpg", true);
-addSleepingMarker(markers, 50.825131, -0.11364, 'Brighton Mast Hotel', 'brightonmast.jpg'); 
-addMarker(markers, 50.829306, -0.109863, 'Never-ending Racecourse', 'racecourse.jpg'); 
-addMarker(markers, 50.846421, -0.065918, 'Mast (The correct one)', 'mast.jpeg'); 
-addFoodMarker(markers, 50.866564, -0.055983, 'A27 (Cafe + Watertap)', 'a27.jpg'); 
-addMarker(markers, 50.91013, -0.06772, 'Scary Horse College', 'plumpton.jpg'); 
-addMarker(markers, 50.920587, -0.078782, 'David’s House (Better than Kendra’s)', 'davidshouse.jpg'); 
-addMarker(markers, 50.93652, -0.079941, 'Vineyard', 'vineyard.jpg'); 
-addFoodMarker(markers, 50.991137, -0.050908, 'Petrol Station (with microwave)', 'petrolstation.jpg'); 
-addMarker(markers, 51.002062, -0.058215, 'Attack of the killer horses', 'horseattack.jpg'); 
-addSleepingMarker(markers, 51.016212, -0.078278, 'Church (new route and sleep spot)', 'church.jpg'); 
-addMarker(markers, 51.023932, -0.092483, 'Suicide Road', 'suicideroad.jpg'); 
-addMarker(markers, 51.022528, -0.09819, 'Golf Course (with angry golfers)', 'hhgolf.jpg'); 
-addMarker(markers, 51.039478, -0.101194, 'Cows', 'cows.jpg'); 
-addFoodMarker(markers, 51.042878, -0.099392, 'Reservoir', 'res.jpg'); 
-addMarker(markers, 51.055774, -0.088706, 'Showground', 'showground.jpg'); 
-addMarker(markers, 51.061304, -0.100679, 'Unmemorable Bridge', 'bridge.jpg'); 
-addMarker(markers, 51.073277, -0.109735, 'Long Road', 'longroad.jpg'); 
-addMarker(markers, 51.092553, -0.122523, 'School', 'school.jpg'); 
-addFoodMarker(markers, 51.114744, -0.104027, 'Cafe', 'cafe.jpg'); 
-addMarker(markers, 51.118583, -0.107009, 'Stately Home', 'stately.jpg'); 
-addFoodMarker(markers, 51.148286, -0.099478, 'Pub', 'pub.jpg'); 
-addMarker(markers, 51.15768, -0.100937, 'Airplane City', 'airplanecity.jpg');
-addMarker(markers, 51.172354, -0.102557, 'Kendra’s House', 'kendrahouse.jpg');
-addMarker(markers, 51.181085, -0.102139, 'The tree', 'tree.jpg');
-addMarker(markers, 51.193646, -0.101838, 'Annoying Windmill', 'windmill.jpeg'); 
-// addMarker(markers, 0,0, 'Blue Denim Skirt Stile', ''); 
-addMarker(markers, 51.217126, -0.114777, 'Farmers Fields', 'farmersfields.jpeg'); 
-addMarker(markers, 51.225163, -0.116397, 'Railway Crossing', 'railwaycrossing.jpeg');
-addMarker(markers, 51.229416, -0.113962, 'A Motorway', 'motorway.jpeg'); 
-addMarker(markers, 51.232943, -0.111859, 'Ploughed Field', 'ploughedfield.jpeg'); 
-addMarker(markers, 51.237377, -0.106806, 'Donkeys', 'donkeys.jpeg'); 
-addMarker(markers, 51.23876, -0.105593, 'Steep Road', 'steep.jpg'); 
-addMarker(markers, 51.248566, -0.105743, 'Cow Diversion', 'cow_diversion.jpg'); 
-addMarker(markers, 51.258276, -0.101302, 'M25', 'm25.jpg'); 
-addMarker(markers, 51.266755, -0.10938, 'Goat Mountain', 'goatmountain.jpg'); 
-addMarker(markers, 51.270648, -0.1119660, 'North Downs Way', 'ndw.jpg'); 
-addMarker(markers, 51.27875, -0.112889, 'Fat pigs', 'fatpigs.jpeg'); 
-addMarker(markers, 51.291137, -0.117116, 'Misty Valley', 'mistyvalley.jpg'); 
-addMarker(markers, 51.30069, -0.1337890, 'Bike Hill', 'bikehill.jpg'); 
-addFoodMarker(markers, 51.319335, -0.139089, 'Best Pizza Shop everrrr', 'pizza.jpeg'); 
-addMarker(markers, 51.322902, -0.162392, 'Not Ducks', 'notducks.jpg'); 
-addFoodMarker(markers, 51.324263, -0.170513, 'Corner Shop', 'cornershop.jpg'); 
-addMarker(markers, 51.324068, -0.194342, 'Bell Tower', 'belltower.jpg');   // addSleepingMarker
-addMarker(markers, 51.329874, -0.208633, 'Busy Road', 'busyroad.jpg'); 
-addSleepingMarker(markers, 51.335183, -0.210639, 'Golf Courses', 'golf.jpg'); 
-addMarker(markers, 51.355067, -0.230659, 'Nonsuch Park', 'nonsuch.jpg'); 
-addMarker(markers, 51.360473, -0.242815, 'Builders House (tap)', 'buildershouse.jpeg'); 
-addMarker(markers, 51.363421, -0.248823, 'Stoneleigh Station', 'stoneleigh.jpg'); 
-addFoodMarker(markers, 51.384969, -0.26239, 'Co-op', 'coop.jpg'); 
-addMarker(markers, 51.38814, -0.262642, 'Zig-Zags', 'zigzags.jpg'); 
-addMarker(markers, 51.39131, -0.263634, 'Subway', 'subway.jpg');
-addMarker(markers, 51.395404, -0.271086, 'Longest school in the world ', 'longestschool.jpg'); 
-addFoodMarker(markers, 51.411119, -0.308733, 'Blue Bridge', 'bluebridge.jpg'); 
-addMarker(markers, 51.418292, -0.306416, 'Real Ducks', 'realducks.jpg'); 
-addSleepingMarker(markers, 51.426909, -0.309108, 'YMCA', 'ymca.jpg'); 
-addMarker(markers, 51.476619, -0.226137, '1066 Start', '1066.jpg'); 
-addFoodMarker(markers, 51.462617, -0.186639, 'McDonalds', 'mcdonalds.jpg'); 
-addMarker(markers, 51.500889, -0.123897, 'Big Ben', 'bigben.jpg');
+addFoodMarker(markers, 50.819221, -0.136557, "Brighton Pier", "brightonpier.jpg", "Less open take aways and shops than you would think after 11pm.  We settled for chips on the pier.");
+addSleepingMarker(markers, 50.825131, -0.11364, 'Brighton Mast Hotel', 'brightonmast.jpg', 'We slept for 2 hours (and then another hour) in a bush next to the mast.'); 
+addMarker(markers, 50.829306, -0.109863, 'Never-ending Racecourse', 'racecourse.jpg', "It's a long way when you are hungry and tired."); 
+addMarker(markers, 50.846421, -0.065918, 'Mast (The correct one)', 'mast.jpeg', 'Make sure you take the correct path (by gate) from the carpark.'); 
+addFoodMarker(markers, 50.866564, -0.055983, 'A27', 'a27.jpg', 'Just past the bridge is a campsite cafe which sells coffee.  Back on the route is a South Downs Way cold water tap'); 
+addMarker(markers, 50.91013, -0.06772, 'Scary Horse College', 'plumpton.jpg', 'They only chase people wearing orange.  Oh wait...'); 
+addMarker(markers, 50.920587, -0.078782, 'David’s House', 'davidshouse.jpg', "This is much better than Kendra's choice!"); 
+addMarker(markers, 50.93652, -0.079941, 'Vineyard', 'vineyard.jpg', ''); 
+addFoodMarker(markers, 50.991137, -0.050908, 'Petrol Station', 'petrolstation.jpg', 'The petrol station has a limited range of food, a microwave and a tap outside.  Not 24 hours.'); 
+addMarker(markers, 51.002062, -0.058215, 'Attack of the killer horses', 'horseattack.jpg', 'Our head torches spooked them.  Diverted over 2 electric fences and then down the road.'); 
+addSleepingMarker(markers, 51.016212, -0.078278, 'Church (start of new route)', 'church.jpg', 'We slept here twice for 15 minutes each time.  Hidden in the woods by the road.'); 
+addMarker(markers, 51.023932, -0.092483, 'Suicide Road', 'suicideroad.jpg', 'No pavement,  fast cars and a blind bend.'); 
+addMarker(markers, 51.022528, -0.09819, 'Golf Course', 'hhgolf.jpg', 'Crossings: 4.   Angry Golfers: 2'); 
+addMarker(markers, 51.039478, -0.101194, 'Cows', 'cows.jpg', 'Shhhhh -  Hold your breath and they might not notice us'); 
+addFoodMarker(markers, 51.042878, -0.099392, 'Reservoir', 'res.jpg', 'Cafe selling drinks, ice creams and a very limited range of food.'); 
+addMarker(markers, 51.055774, -0.088706, 'Showground', 'showground.jpg', 'A loud Monster Truck event was on.'); 
+addMarker(markers, 51.061304, -0.100679, 'Unmemorable Bridge', 'bridge.jpg', 'Whats next?  The bridge.  What bridge?'); 
+addMarker(markers, 51.073277, -0.109735, 'Long Road', 'longroad.jpg', 'Easy going'); 
+addSleepingMarker(markers, 51.079047, -0.111322, 'Woods', 'woods.jpg', 'Slept here twice.  Once for 3 hours. '); 
+addMarker(markers, 51.092553, -0.122523, 'School', 'school.jpg', 'Posh school'); 
+addFoodMarker(markers, 51.114744, -0.104027, 'Cafe', 'cafe.jpg', 'Slightly off route, limited opening hours.  Never visited.'); 
+addMarker(markers, 51.118583, -0.107009, 'Stately Home', 'stately.jpg', 'Leave the road early at the wide gate.  Head to the right most building.'); 
+addFoodMarker(markers, 51.148286, -0.099478, 'Pub', 'pub.jpg', 'Not cheap,  but good food.  Friendly staff.  We went there 4 times.'); 
+addMarker(markers, 51.15768, -0.100937, 'Airplane City', 'airplanecity.jpg', 'Flight path for planes landing at Gatwick.');
+addMarker(markers, 51.172354, -0.102557, 'Kendra’s House', 'kendrahouse.jpg', "Not as nice as David’s house.");
+addMarker(markers, 51.181085, -0.102139, 'The tree', 'tree.jpg', 'Turn right past the fallen tree');
+addMarker(markers, 51.193646, -0.101838, 'Annoying Windmill', 'windmill.jpeg', "I hate that windmill!  I'm glad you said that"); 
+// addMarker(markers, 0,0, 'Blue Denim Skirt Stile', "Women in short skirts shouldn't climb stiles."); 
+
+addMarker(markers, 51.217126, -0.114777, 'Farmers Fields', 'farmersfields.jpeg', 'Boring section.'); 
+addMarker(markers, 51.225163, -0.116397, 'Railway Crossing', 'railwaycrossing.jpeg', '');
+addMarker(markers, 51.229416, -0.113962, 'A Motorway', 'motorway.jpeg', 'Not the M25'); 
+addMarker(markers, 51.232943, -0.111859, 'Ploughed Field', 'ploughedfield.jpeg', 'There is no good option'); 
+addMarker(markers, 51.237377, -0.106806, 'Donkeys', 'donkeys.jpeg', ''); 
+addMarker(markers, 51.23876, -0.105593, 'Steep Road', 'steep.jpg', 'No sign of the remains of a castle'); 
+addMarker(markers, 51.248566, -0.105743, 'Cow Diversion', 'cow_diversion.jpg', "We ain't going through there - 4 times"); 
+addMarker(markers, 51.258276, -0.101302, 'M25', 'm25.jpg', ''); 
+addMarker(markers, 51.266755, -0.10938, 'Goat Mountain', 'goatmountain.jpg', 'Long and steep.'); 
+addMarker(markers, 51.270648, -0.1119660, 'North Downs Way', 'ndw.jpg', 'Short and sweet'); 
+addMarker(markers, 51.27875, -0.112889, 'Fat pigs', 'fatpigs.jpeg', 'How rude!'); 
+addMarker(markers, 51.291137, -0.117116, 'Misty Valley', 'mistyvalley.jpg', ''); 
+addMarker(markers, 51.30069, -0.1337890, 'Bike Hill', 'bikehill.jpg', ''); 
+addFoodMarker(markers, 51.319335, -0.139089, 'Best Pizza Shop everrrr', 'pizza.jpeg', 'Good food,  very friendly.  They served us 5 minutes before closing.'); 
+addMarker(markers, 51.322902, -0.162392, 'Not Ducks', 'notducks.jpg', ''); 
+addFoodMarker(markers, 51.324263, -0.170513, 'Corner Shop', 'cornershop.jpg', 'Limited range of food.  Not 24 hours'); 
+addMarker(markers, 51.324068, -0.194342, 'Bell Tower', 'belltower.jpg', '');   // addSleepingMarker
+addMarker(markers, 51.329874, -0.208633, 'Busy Road', 'busyroad.jpg', 'Good view of London'); 
+addSleepingMarker(markers, 51.335183, -0.210639, 'Golf Courses', 'golf.jpg', 'Slept for 10 minutes. Golfer: "SOME people will sleep anywhere" '); 
+addMarker(markers, 51.355067, -0.230659, 'Nonsuch Park', 'nonsuch.jpg', 'Head straight through the woods,  then go 45 degrees left'); 
+addMarker(markers, 51.360473, -0.242815, 'Builders House (tap)', 'buildershouse.jpeg', 'Sneaky water tap'); 
+addMarker(markers, 51.363421, -0.248823, 'Stoneleigh Station', 'stoneleigh.jpg', 'Over the bridge'); 
+addFoodMarker(markers, 51.384969, -0.26239, 'Co-op', 'coop.jpg', 'Standard Co-op.  Not 24 hours.'); 
+addMarker(markers, 51.38814, -0.262642, 'Zig-Zags', 'zigzags.jpg', 'Lots of foxes at night'); 
+addMarker(markers, 51.39131, -0.263634, 'Subway', 'subway.jpg', '');
+addMarker(markers, 51.395404, -0.271086, 'Longest school in the world ', 'longestschool.jpg', ''); 
+addFoodMarker(markers, 51.411119, -0.308733, 'Blue Bridge', 'bluebridge.jpg', 'Lots of options in Kingston.  Costa, Gregs, McDonalds etc'); 
+addMarker(markers, 51.418292, -0.306416, 'Real Ducks', 'realducks.jpg', ''); 
+addSleepingMarker(markers, 51.426909, -0.309108, 'YMCA', 'ymca.jpg', 'Slept for 3 hours by the fence in the early hours of the morning.'); 
+addMarker(markers, 51.476619, -0.226137, '1066 Start', '1066.jpg', 'Start of the 1066 race'); 
+addFoodMarker(markers, 51.462617, -0.186639, 'McDonalds', 'mcdonalds.jpg', 'Standard McDonalds. Easy to spot.'); 
+addMarker(markers, 51.500889, -0.123897, 'Big Ben', 'bigben.jpg', 'Start in the middle of the bridge', true);
 
 map.on('popupopen', function(ev){
     var el = document.getElementById('fullScreenInfo');
@@ -137,21 +139,21 @@ function closePopup(markers, index) {
     markers[index].closePopup();
 }
 
-function addFoodMarker(markers, lat, long, title, image, last) {
-    addMarker(markers, lat, long, title, image, last, foodIcon);        
+function addFoodMarker(markers, lat, long, title, image, description) {
+    addMarker(markers, lat, long, title, image, description, false, foodIcon);        
 }
 
-function addSleepingMarker(markers, lat, long, title, image, last) {
-    addMarker(markers, lat, long, title, image, last, sleepingIcon);        
+function addSleepingMarker(markers, lat, long, title, image, description) {
+    addMarker(markers, lat, long, title, image, description,false, sleepingIcon);        
 }
 
-function addMarker(markers, lat, long, title, image, last, icon = null) {
+function addMarker(markers, lat, long, title, image, description, last, icon = null) {
     var index = markers.length;
     
     var marker = icon ? L.marker([lat, long], {icon: icon}) : L.marker([lat, long]);
     marker.addTo(map);
 
-    var html = `<b>${title}</b><br><img class='popupImage' src='img/${image}'/><div class='btns'>`;
+    var html = `<div class='title'>${title}</div><br><img class='popupImage' src='img/${image}'/><div class='description'>${description}</div><div class='btns'>`;
     if (index > 0) html += `<a href='javascript:previous(markers,${index})'>&lt; South</a>`;
     html += `<a href='javascript:closePopup(markers,${index})'>Close</a>`;
     if (!last) html += `<a href='javascript:next(markers,${index})'>North &gt;</a>`;
