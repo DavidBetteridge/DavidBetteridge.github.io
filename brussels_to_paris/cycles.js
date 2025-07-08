@@ -2,6 +2,19 @@ var map
 var layer
 var runs = {};
 
+const openBtn = document.getElementById("openBtn");
+const closeBtn = document.getElementById("closeBtn");
+const sidePanel = document.getElementById("sidePanel");
+
+openBtn.onclick = () => {
+sidePanel.classList.add("open");
+};
+
+closeBtn.onclick = () => {
+sidePanel.classList.remove("open");
+};
+
+
 function loadMapScenario() {
     map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
         /* No need to set credentials if already passed in URL */

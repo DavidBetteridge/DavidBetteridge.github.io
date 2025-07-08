@@ -9,14 +9,17 @@
 
 <body>
 
-    <div class="row">
+    <div class="container">
+        <div class="column" id='myMap'></div>
+    </div>
 
-        <div class="column" id='myMap' style='height: 100vh;'></div>
-
-        <div class="column" id='printoutPanel'>
+        <div id='sidePanel'>
 
             <div class="title">Brussels to Paris</div>
 
+
+           <button id="closeBtn">Close</button>            
+                       <button id="openBtn">Open Panel</button>
             <ul>
                 <li><input class="route" type="checkbox" value="Brussels_to_Paris_Day_1.gpx"
                         data-colour="#ff0000">Day 1 - Brussels to Hotel in Ottignies-Louvain-la-Neuve</input></li>
@@ -27,10 +30,9 @@
                 <li><input class="route" type="checkbox" value="Brussels_to_Paris_Day_4.gpx"
                         data-colour="#ffff00">Day 4 - Etreaupont to Hotel in Compiegne</input></li>
                 <li><input class="route" type="checkbox" value="Brussels_to_Paris_Day_5.gpx"
-                        data-colour="#ffff00">Day 5 - Compiegne to Campsite in Paris</input></li>                        
+                        data-colour="#bbffbb">Day 5 - Compiegne to Campsite in Paris</input></li>                        
             </ul>
         </div>
-    </div>
 
     <script type='text/javascript' src='cycles.js'></script>
     <script type='text/javascript'
