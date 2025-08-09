@@ -29,6 +29,16 @@ var spoonsIcon = L.icon({
     // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
+var bkIcon = L.icon({
+    iconUrl: 'bk.svg',
+    // shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [24, 24], // size of the icon
+    // shadowSize:   [50, 64], // size of the shadow
+    // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 
 var polyline = L.polyline(lineData, {color: 'red'}).addTo(map);
 
@@ -48,4 +58,9 @@ for(var i = 0; i < spoons.length; i++) {
     const corrds = [store[2], store[1]]
     L.marker(corrds, {icon: spoonsIcon}).addTo(map);
 }
-    
+ 
+for(var i = 0; i < bks.length; i++) {
+    const store = bks[i]
+    const corrds = [store[2], store[1]]
+    L.marker(corrds, {icon: bkIcon}).addTo(map);
+}
