@@ -1,18 +1,14 @@
-var map
-var layer
+
+var map = L.map('map').setView([53.4808, -1.2426], 7);
+
+const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var layers = []
+
 var runs = {};
-
-function loadMapScenario() {
-    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        /* No need to set credentials if already passed in URL */
-        center: new Microsoft.Maps.Location(53.4808, -1.2426),
-        mapTypeId: Microsoft.Maps.MapTypeId.aerial,
-        zoom: 7
-    });
-
-    layer = new Microsoft.Maps.Layer();
-    map.layers.insert(layer);
-}
 
 function displayRoute(xmlFile, map, colour) {
 
@@ -20,7 +16,7 @@ function displayRoute(xmlFile, map, colour) {
 
         if (this.status == 200 && this.responseXML != null) {
             var xmlDoc = this.responseXML;
-            var coords = [];
+            var lineData = [];
             var trkpts = xmlDoc.getElementsByTagName("trkpt");
 
             if (trkpts.length > 0) {
@@ -28,18 +24,16 @@ function displayRoute(xmlFile, map, colour) {
                     var trkpt = trkpts[i];
                     var longitude = trkpt.getAttribute("lon");
                     var latitude = trkpt.getAttribute("lat");
-                    coords.push(new Microsoft.Maps.Location(latitude, longitude));
+
+                    
+                    lineData.push([latitude, longitude]);
                 }
 
-                var line = new Microsoft.Maps.Polyline(coords, {
-                    strokeColor: colour,
-                    strokeThickness: 5,
-                    metadata: xmlFile
-                });
+                
+                var polyline = L.polyline(lineData, {color: colour}).addTo(map);
+                layers.push(polyline)
 
-                runs[xmlFile] = line;
-
-                layer.add(line);
+                runs[xmlFile] = polyline;
             }
         } 
         else 
@@ -58,13 +52,18 @@ function displayRoute(xmlFile, map, colour) {
     }
     else
     {
-        layer.add(run);
+        layers.push(run);
+        run.addTo(map)
     }
 }
  
 
 function redraw() {
-    layer.clear();
+    layers.forEach(function (layer) {
+        map.removeLayer(layer);
+    });
+    layers = [];
+    
     var checkboxes = document.querySelectorAll(".route");
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
