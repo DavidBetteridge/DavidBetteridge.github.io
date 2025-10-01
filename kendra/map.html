@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MyRuns - Kendra</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <link rel="stylesheet" type="text/css" href="map.css">
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin=""
+            />
+        <script
+            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin="">
+        </script>
+    </head>
+    <body>
+
+        <div class="row">
+
+            <div class="column" id='map' style='height: 100vh;'></div>
+
+            <div class="column" id='printoutPanel'>
+
+                <input class="routeAll" type="checkbox">Select All</input>
+
+                <div class="sectionHeader">Hardmoors</div>
+                <ul>
+                    <li><input class="route" type="checkbox" value="WoldsWay.xml" data-colour="#00ffff">Wolds Way</input></li>
+                    <li><input class="route" type="checkbox" value="Cleveland_Way.xml" data-colour="#80ff00">Cleveland Way</input></li>
+                </ul>
+
+                <div class="sectionHeader">Other races</div>
+                <ul>
+                    
+                    <li><input class="route" type="checkbox" value="Spine2018.xml" data-colour="#bfff00">Spine Race</input></li>
+                    <li><input class="route" type="checkbox" value="TheLine.gpx" data-colour="#80ff00">The Line</input></li>
+                    <li><input class="route" type="checkbox" value="BigBen_To_Kingston.gpx" data-colour="#ff4000">Big Ben to Kingston</input></li>
+                    <li><input class="route" type="checkbox" value="Kingston_To_Brighton.gpx" data-colour="#8000ff">Kingston To Brighton</input></li>
+                </ul>
+
+                <div class="sectionHeader">England Coast Path</div>
+                <ul>
+                    <li><input class="route" type="checkbox" value="Berwick_to_Alnmouth.gpx" data-colour="#ff8000">Berwick to Alnmouth</input></li>
+                    <li><input class="route" type="checkbox" value="Alnmouth_to_Sunderland.gpx" data-colour="#00bfff">Alnmouth to Sunderland</input></li>
+                </ul>    
+
+
+            </div>
+        </div>
+
+        <script type='text/javascript' src='map.js'></script>
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AoMlZ5rJywSt5Yeba_5_EpNUkmzPkotnJs5d0K5XC16zY6xxShIH4Ipny7xWCLFM &callback=loadMapScenario' async defer></script>
+    </body>
+</html>
