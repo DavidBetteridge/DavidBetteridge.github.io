@@ -5,6 +5,22 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+function addCurrentLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+function success(position) {
+    const corrds = [position.coords.latitude, position.coords.longitude]
+    L.circle(corrds, {
+      radius: 20,
+      color: 'blue',
+    }).addTo(map);
+    map.setView(corrds, 16);
+}
+
 
 
 var mcdonaldsIcon = L.icon({
@@ -64,3 +80,5 @@ for(var i = 0; i < bks.length; i++) {
     const corrds = [store[2], store[1]]
     L.marker(corrds, {icon: bkIcon}).addTo(map);
 }
+
+addCurrentLocation();
