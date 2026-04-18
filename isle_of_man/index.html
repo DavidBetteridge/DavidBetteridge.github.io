@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Isle of Man 2026 - David and Esther</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/index.css">
+    <link rel="stylesheet" type="text/css" href="cycles.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+        />
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin="">
+    </script>
+</head>
+
+<body>
+    <div class="container" style="max-width: none; grid-template-columns: 1fr; grid-template-rows: auto 1fr;">
+        <div class="item-header_logo">
+            <div class="logo-wrapper">
+                <a href="/index.html">
+                    <img src="/images/david_betteridge.png" alt="Mr David Betteridge" class="top_left_logo">
+                </a>
+                <div class="item-header_text">
+                    <span>David Betteridge</span>
+                </div>
+            </div>
+
+            <div class="theme-switch-wrapper">
+                <em>Theme</em>
+                <select name="theme-selector" id="theme-selector">
+                    <option value="blue">Blue</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="column" id='map' style='height: 100vh;'></div>
+
+            <div class="column" id='printoutPanel'>
+
+                <div class="title">Isle of Man</div>
+
+                <ul>
+                <li><input class="route" type="checkbox" value="01_To_the_campsite.gpx"
+                        data-colour="#ff0000">Day 1 - Douglas (Ferry to Campsite)</input></li>
+                <li><input class="route" type="checkbox" value="02-Isle_of_Man_Douglas_Peel_loop.gpx"
+                        data-colour="#ff0000">Day 2 - Douglas to Peel to Douglas</input></li>
+                <li><input class="route" type="checkbox" value="03-Douglas_to_Peel_to_Kirk_Michael.gpx"
+                        data-colour="#ff0000">Day 3 - Douglas to Peel to Kirk Michael</input></li>
+                <li><input class="route" type="checkbox" value="04-Kirk_Michael_to_Laxey.gpx"
+                        data-colour="#ff0000">Day 4 - Kirk Michael to Laxey</input></li>
+                <li><input class="route" type="checkbox" value="05-Laxey_to_Douglas.gpx"
+                        data-colour="#ff0000">Day 5 - Laxey to Douglas</input></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <script type='text/javascript' src='/theme.js'></script>
+    <script type='text/javascript' src='cycles.js'></script>
+</body>
+
+</html>
