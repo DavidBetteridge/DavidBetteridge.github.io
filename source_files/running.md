@@ -10,4 +10,4 @@ During the Summer of 2022 I (accidentally) entered two 100 mile races a week apa
 
 At part of my training for the line I solo fastpacked along [Hadrian's Wall](/target_files/hadrians_wall.html)
 
-In the summer of 2023 I successfully completed the [line race.](/TheLine.pdf)
+In the summer of 2023 I successfully completed the [line race.](/running/TheLine.pdf)
