@@ -133,7 +133,7 @@ a:hover {
 
 .item-sidebar {
   grid-area: sidebar;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
   background: var(--sidebar-bg);
   border-right: 1px solid var(--border-color);
 }
@@ -141,18 +141,18 @@ a:hover {
 .item-sidebar ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.2rem 0;
 }
 
 .item-sidebar li {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
 }
 
 .item-sidebar a {
   color: var(--text-color);
   font-weight: 500;
   display: block;
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 6px;
   transition: background 0.2s, transform 0.2s;
 }
@@ -168,7 +168,7 @@ a:hover {
   text-transform: uppercase;
   font-size: 0.8rem;
   color: var(--secondary-color);
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
   letter-spacing: 0.05rem;
 }
 
