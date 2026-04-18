@@ -1,141 +1,231 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <title>Resources - David Betteridge</title>
-  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/index.css">
   <link rel="stylesheet" type="text/css" href="resources.css">
 </head>
 
 <body>
+  <div class="container">
+    <div class="item-header_logo">
+        <div class="logo-wrapper">
+            <a href="/index.html">
+                <img src="/images/david_betteridge.png" alt="Mr David Betteridge" class="top_left_logo">
+            </a>
+            <div class="item-header_text">
+                <span>David Betteridge</span>
+            </div>
+        </div>
 
-  <div>
+        <div class="theme-switch-wrapper">
+            <em>Theme</em>
+            <select name="theme-selector" id="theme-selector">
+                <option value="blue">Blue</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+            </select>
+        </div>
+    </div>
 
-    <h1>Useful Resources</h1>
+    <div class="item-sidebar">
+        <ul>
+            <li><a href="/target_files/about.html">About me</a></li>
+            <li><a href="/target_files/running.html">My running</a></li>
+            <li><a href="/target_files/london_to_paris.html">London to Paris</a></li>
+            <li><a href="/familybikerides/index.html">Family bike rides</a></li>
+            <li><a href="/target_files/blogs.html">My blog</a></li>
+            <li><a href="https://www.meetup.com/York-Code-Dojo/">York Code Dojo</a></li>
+            <li><a href="https://yorkdevelopers.org">York Developers</a></li>
+            <li><a href="/resources/index.html">Some useful resources</a></li>
+        </ul>
 
-    <h2>Inspiration</h2>
+        <p>Contact Me</p>
+        <ul>
+            <li><a href="https://github.com/DavidBetteridge">On GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/dbetteridge/">On LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/davidbetteridge.net">On BlueSky</a></li>
+        </ul>
+    </div>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/pxBQLFLei70" title="Dont ring the bell"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+    <div class="item-content">
+      <div class="content-container">
+        <h1>Useful Resources</h1>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/yX39J_YyKbs" title="I am the champion"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+        <h2>Inspiration</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/pxBQLFLei70" title="Dont ring the bell" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Don't ring the bell</h3></div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/yX39J_YyKbs" title="I am the champion" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>I am the champion</h3></div>
+          </div>
+        </div>
 
-    <h2>Sudoku</h2>
+        <h2>Sudoku</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/IE1N6B6SHQA" title="Sudoku Solving" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>World's Hardest Sudoku</h3></div>
+          </div>
+        </div>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/IE1N6B6SHQA" title="YouTube video player"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+        <h2>Electronics</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/HyznrdDSSGM" title="Electronics" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Electronics Basics</h3></div>
+          </div>
+        </div>
 
-    <h2>Electronics</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/HyznrdDSSGM" title="YouTube video player"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+        <h2>Programming - Testing and Practice</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/_M4o0ExLQCs" title="Get Kata" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Get Kata</h3></div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/tWn8RA_DEic" title="Kevlin Henney" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Kevlin Henney</h3></div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/EZ05e7EMOLM" title="Ian Cooper" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Ian Cooper</h3></div>
+          </div>
+        </div>
 
-    <h2>Programming - Testing and Practice</h2>
+        <h2>Business</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/RpH6IPhyh7I" title="Scott Hanselman" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Scott Hanselman</h3></div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/n_yHZ_vKjno" title="Growth" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Growth</h3></div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/LMb_4OBgWIY" title="Steve Ballmer" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Steve Ballmer</h3></div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/-c-SUdBoD6M" title="Business Strategies" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Business Insights</h3></div>
+          </div>
+        </div>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/_M4o0ExLQCs" title="Get Kata" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+        <h2>Programming - C#</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/wgHIkdUQbp0" title="Minsk" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Minsk Compiler</h3></div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/qJAICCTPhcE" title="Trains.net" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Trains.net</h3></div>
+          </div>
+        </div>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/tWn8RA_DEic" title="Kevlin Henney"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+        <h2>Programming - General</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/srQt1NAHYC0" title="Functional Design Patterns" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Functional Design Patterns</h3></div>
+          </div>
+        </div>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/EZ05e7EMOLM" title="Ian Cooper" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+        <h2>Programming - Web Development</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/w1nhwUGsG6M" title="CSS Typing" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>CSS Typing Animation</h3></div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/6xNcXwC6ikQ" title="CSS Neon Button" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>CSS Neon Button</h3></div>
+          </div>
+        </div>
+        <ul>
+          <li><a href="https://material-ui.com/">Material UI Components</a></li>
+        </ul>
 
+        <h2>Programming - Python</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/cKPlPJyQrt4" title="James Powell" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>James Powell - Python Pro</h3></div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/pkCLMl0e_0k" title="David Beazley" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>David Beazley - Lambda Calculus</h3></div>
+          </div>
+        </div>
+        <ul>
+          <li><a href="https://github.com/sqlalchemy/alembic">alembic for sqlalchemy migrations</a></li>
+        </ul>
 
+        <h2>Microsoft Graph</h2>
+        <ul>
+          <li><a href="https://docs.microsoft.com/en-us/graph/auth-v2-service">Graph API</a></li>
+          <li><a href="https://developer.microsoft.com/en-us/graph/graph-explorer">Graph Explorer</a></li>
+        </ul>
 
+        <h2>Security</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/1S0aBV-Waeo" title="Buffer overflow" allowfullscreen></iframe>
+            </div>
+            <div class="video-info"><h3>Buffer Overflow Explained</h3></div>
+          </div>
+        </div>
 
-    <h2>Business</h2>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/RpH6IPhyh7I" title="Scott Hanselman"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/n_yHZ_vKjno" title="Growth" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/LMb_4OBgWIY" title="Steve Ballmer"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/-c-SUdBoD6M" title="YouTube video player"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-    <h2>Programming - C#</h2>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/wgHIkdUQbp0" title="Minsk" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/qJAICCTPhcE" title="Trains.net" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-
-    <h2>Programming - General</h2>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/srQt1NAHYC0" title="Functional Design Patterns "
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-    <h2>Programming - Web Development</h2>
-    <ul>
-      <li><a href="https://material-ui.com/">Material UI Components</a></li>
-    </ul>
-
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/w1nhwUGsG6M" title="CSS Typing" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/6xNcXwC6ikQ" title="CSS Neon Button"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-
-
-
-    <h2>Programming - Python</h2>
-
-    <ul>
-      <li><a href="https://github.com/sqlalchemy/alembic">alembic for sqlalchemy migrations</a></li>
-    </ul>
-
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/cKPlPJyQrt4" title="James Powell"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/pkCLMl0e_0k"
-      title="David Beazley - Lambda Calculus from the Ground Up - PyCon 2019" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
-    <h2>Microsoft Graph</h2>
-    <ul>
-      <li><a href="https://docs.microsoft.com/en-us/graph/auth-v2-service">Graph API</a></li>
-      <li><a href="https://developer.microsoft.com/en-us/graph/graph-explorer">Graph Explorer</a></li>
-    </ul>
-
-    <h2>Security</h2>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/1S0aBV-Waeo" title="Buffer overflow"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-
+      </div>
+    </div>
   </div>
 
+  <script type='text/javascript' src='/theme.js'></script>
 </body>
-
-
-
 </html>

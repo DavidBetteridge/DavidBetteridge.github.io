@@ -9,8 +9,44 @@ body {
     display: flex;
 }
 
-.column {
-    flex: 90%;
+#map {
+    flex: 1;
+}
+
+#printoutPanel {
+    flex: 0 0 300px;
+    overflow-y: auto;
+    position: relative;
+    transition: width 0.3s ease;
+}
+
+#printoutPanel.collapsed {
+    flex: 0 0 0;
+    width: 0;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.resizer {
+    width: 10px;
+    cursor: col-resize;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.resizer:hover {
+    background: var(--border-color);
+}
+
+.resizer-toggle {
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
 }
 
 .title {

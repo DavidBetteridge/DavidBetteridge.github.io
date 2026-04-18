@@ -1,4 +1,45 @@
 
+// Resizing logic
+const resizer = document.getElementById('resizer');
+const panel = document.getElementById('printoutPanel');
+const resizerToggle = document.getElementById('resizer-toggle');
+let isResizing = false;
+
+resizer.addEventListener('mousedown', (e) => {
+    if (e.target === resizerToggle) return;
+    isResizing = true;
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', stopResizing);
+    document.body.style.cursor = 'col-resize';
+});
+
+function handleMouseMove(e) {
+    if (!isResizing) return;
+    const containerWidth = document.querySelector('.row').offsetWidth;
+    const newWidth = containerWidth - e.clientX;
+    if (newWidth > 100 && newWidth < 600) {
+        panel.style.flex = `0 0 ${newWidth}px`;
+    }
+}
+
+function stopResizing() {
+    isResizing = false;
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', stopResizing);
+    document.body.style.cursor = 'default';
+    map.invalidateSize();
+}
+
+resizerToggle.addEventListener('click', () => {
+    panel.classList.toggle('collapsed');
+    if (panel.classList.contains('collapsed')) {
+        resizerToggle.textContent = '«';
+    } else {
+        resizerToggle.textContent = '⋮';
+    }
+    setTimeout(() => map.invalidateSize(), 350); // Wait for transition
+});
+
 var map = L.map('map').setView([53.4808, -1.2426], 7);
 
 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

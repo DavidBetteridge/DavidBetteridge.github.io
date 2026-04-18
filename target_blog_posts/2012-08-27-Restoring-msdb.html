@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mr David Betteridge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="item-header_logo">
+            <div class="logo-wrapper">
+                <a href="/index.html">
+                    <img src="/images/david_betteridge.png" alt="Mr David Betteridge" class="top_left_logo">
+                </a>
+                <div class="item-header_text">
+                    <span>David Betteridge</span>
+                </div>
+            </div>
+
+            <div class="theme-switch-wrapper">
+                <em>Theme</em>
+                <select name="theme-selector" id="theme-selector">
+                    <option value="blue">Blue</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="item-sidebar">
+
+            <p>Running</p>
+            <ul>
+                <li><a href="/target_files/running.html">Ultra running</a></li>
+                <li><a href="/l2b4/index.html">London to Brighton to London x 2</a></li>
+            </ul>
+
+            <p>Cycling Holidays</p>
+            <ul>
+                <li><a href="/familybikerides/index.html">Family bike rides (Quiet Post Covid Roads)</a></li>
+                <li><a href="/target_files/london_to_paris.html">London to Paris 2022 (David and Mary)</a></li>
+                <li><a href="/rotterdam_to_germany/index.html">Rotterdam to Germany 2023 (David and Josephine)</a></li>
+                <li><a href="/brussels_to_paris/index.html">Brussels to Paris 2025 (David and Esther)</a></li>
+                <li><a href="/isle_of_man/index.html">Isle of Man 2026 (David and Esther)</a></li>
+            </ul>
+
+            <p>Contact Me</p>
+            <ul>
+                <li><a href="https://github.com/DavidBetteridge">On GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/dbetteridge/">On LinkedIn</a></li>
+                <li><a href="https://bsky.app/profile/davidbetteridge.net">On BlueSky</a></li>
+
+            </ul>
+
+            <p>Resources</p>
+            <ul>
+                <li><a href="https://www.meetup.com/York-Code-Dojo/">York Code Dojo</a></li>
+                <li><a href="https://yorkdevelopers.org">York Developers</a></li>
+                <li><a href="/resources">Some useful resources</a></li>
+<!--                <li><a href="/target_files/blogs.html">My blog</a></li>-->
+<!--                <li><a href="/target_files/about.html">About me</a></li>-->
+            </ul>
+
+        </div>
+        <div class="item-content">
+            <div class="content-container">
+                <p>We recently performed a disaster recovery exercise which included the restoration of the MSDB database onto our DR server.  I did a quick google to see if there were any special considerations and found the following MS article.  Considerations for Restoring the model and msdb Databases (http://msdn.microsoft.com/en-us/library/ms190749(v=sql.105).aspx).   It said both the original and replacement servers must be on the same version,  I double-checked and in my case they are both <strong>SQL Server 2008 R2 SP1 (10.50.2500)</strong>.</p>
+<p>So I went ahead and stopped <strong>SQL Server agent</strong>, restored the database and restarted the agent.  Checked the jobs and they were all there, everything looked great, and was until the server was rebooted a few days later.
+Then the <strong>syspolicy_purge_history</strong> job started failing on the 3rd step with the error message
+<em>“Unable to start execution of step 3 (reason: The PowerShell subsystem failed to load [see the SQLAGENT.OUT file for details]; The job has been suspended). The step failed.”</em></p>
+<p>A bit more googling pointed me to the <strong>msdb.dbo.syssubsystems</strong> table</p>
+<p><code>sql
+SELECT * FROM msdb.dbo.syssubsystems WHERE start_entry_point ='PowerShellStart'</code></p>
+<p>And in particular the value for the <strong>subsystem_dll</strong>. It still had the path to the <strong>SQLPOWERSHELLSS.DLL</strong> but on the old server. The DR instance has a different name to the live instance and so the paths are different.</p>
+<p>This was quickly fixed with the following SQL
+<code>sql
+Use msdb;
+GO
+sp_configure 'allow updates', 1 ;
+RECONFIGURE WITH OVERRIDE ;
+GO
+UPDATE msdb.dbo.syssubsystems SET subsystem_dll='C:\Program Files\Microsoft SQL Server\MSSQL10_50.DR\MSSQL\binn\SQLPOWERSHELLSS.DLL' WHERE start_entry_point ='PowerShellStart';
+GO
+sp_configure 'allow updates', 0;
+RECONFIGURE WITH OVERRIDE ;
+GO</code></p>
+<p>I stopped and started SQL Server agent and the job now completes.</p>
+<p>I then wondered if anything else might be broken,
+<code>sql
+SELECT subsystem_dll FROM msdb.dbo.syssubsystems</code>
+Shows a further 10 wrong paths – fortunately for parts of SQL (replication, SSIS etc) we aren’t using!</p>
+<p>Lessons Learnt
+1. DR exercises are a good thing!
+2. Keep the Live and DR environments as similar as possible.</p>
+<p>Ported from https://sqlblogcasts.com/blogs/david-betteridge/archive/2012/08/27/restoring-msdb.aspx</p>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src='/theme.js'></script>
+
+</body>
+
+</html>

@@ -1,24 +1,54 @@
-var map
-var layer
-var runs = {};
+// Resizing logic
+const resizer = document.getElementById('resizer');
+const panel = document.getElementById('printoutPanel');
+const resizerToggle = document.getElementById('resizer-toggle');
+let isResizing = false;
 
-function loadMapScenario() {
-    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        /* No need to set credentials if already passed in URL */
-        center: new Microsoft.Maps.Location(49.439999, 1.100000),
-        mapTypeId: Microsoft.Maps.MapTypeId.aerial,
-        zoom: 7
-    });
+resizer.addEventListener('mousedown', (e) => {
+    if (e.target === resizerToggle) return;
+    isResizing = true;
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', stopResizing);
+    document.body.style.cursor = 'col-resize';
+});
 
-    layer = new Microsoft.Maps.Layer();
-    map.layers.insert(layer);
-
-    var checkboxes = document.querySelectorAll(".route");
-    checkboxes.forEach(function (checkbox) {
-        checkbox.checked=true;
-    });
-    redraw();
+function handleMouseMove(e) {
+    if (!isResizing) return;
+    const containerWidth = document.querySelector('.row').offsetWidth;
+    const newWidth = containerWidth - e.clientX;
+    if (newWidth > 100 && newWidth < 600) {
+        panel.style.flex = `0 0 ${newWidth}px`;
+    }
 }
+
+function stopResizing() {
+    isResizing = false;
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', stopResizing);
+    document.body.style.cursor = 'default';
+    map.invalidateSize();
+}
+
+resizerToggle.addEventListener('click', () => {
+    panel.classList.toggle('collapsed');
+    if (panel.classList.contains('collapsed')) {
+        resizerToggle.textContent = '«';
+    } else {
+        resizerToggle.textContent = '⋮';
+    }
+    setTimeout(() => map.invalidateSize(), 350); // Wait for transition
+});
+
+var map = L.map('map').setView([49.439999, 1.100000], 7);
+
+const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var layers = []
+
+var runs = {};
 
 function displayRoute(xmlFile, map, colour) {
 
@@ -26,7 +56,7 @@ function displayRoute(xmlFile, map, colour) {
 
         if (this.status == 200 && this.responseXML != null) {
             var xmlDoc = this.responseXML;
-            var coords = [];
+            var lineData = [];
             var trkpts = xmlDoc.getElementsByTagName("trkpt");
 
             if (trkpts.length > 0) {
@@ -34,18 +64,14 @@ function displayRoute(xmlFile, map, colour) {
                     var trkpt = trkpts[i];
                     var longitude = trkpt.getAttribute("lon");
                     var latitude = trkpt.getAttribute("lat");
-                    coords.push(new Microsoft.Maps.Location(latitude, longitude));
+
+                    lineData.push([latitude, longitude]);
                 }
 
-                var line = new Microsoft.Maps.Polyline(coords, {
-                    strokeColor: colour,
-                    strokeThickness: 5,
-                    metadata: xmlFile
-                });
+                var polyline = L.polyline(lineData, {color: colour}).addTo(map);
+                layers.push(polyline)
 
-                runs[xmlFile] = line;
-
-                layer.add(line);
+                runs[xmlFile] = polyline;
             }
         } 
         else 
@@ -64,13 +90,18 @@ function displayRoute(xmlFile, map, colour) {
     }
     else
     {
-        layer.add(run);
+        layers.push(run);
+        run.addTo(map)
     }
 }
  
 
 function redraw() {
-    layer.clear();
+    layers.forEach(function (layer) {
+        map.removeLayer(layer);
+    });
+    layers = [];
+    
     var checkboxes = document.querySelectorAll(".route");
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
@@ -93,4 +124,10 @@ checkboxes.forEach(function (checkbox) {
         }
     });
 });
+
+// Auto select and load all routes on startup
+checkboxes.forEach(function (checkbox) {
+    checkbox.checked = true;
+});
+redraw();
 

@@ -4,23 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Mr David Betteridge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/index.css">
 </head>
 
 <body>
     <div class="container">
         <div class="item-header_logo">
-            <a href="/index.html"><img src="/images/david_betteridge.png" alt="Mr David Betteridge"
-                    class="top_left_logo"></a>
-        </div>
-        <div class="item-header_text">
-            <span>David Betteridge</span>
-
-            <div class="filler"></div>
+            <div class="logo-wrapper">
+                <a href="/index.html">
+                    <img src="/images/david_betteridge.png" alt="Mr David Betteridge" class="top_left_logo">
+                </a>
+                <div class="item-header_text">
+                    <span>David Betteridge</span>
+                </div>
+            </div>
 
             <div class="theme-switch-wrapper">
                 <em>Theme</em>
-
                 <select name="theme-selector" id="theme-selector">
                     <option value="blue">Blue</option>
                     <option value="dark">Dark</option>
@@ -32,53 +35,65 @@
 
 
         <div class="item-sidebar">
+
+            <p>Running</p>
             <ul>
-                <li><a href="/target_files/about.html">About me</a></li>
-                <li><a href="/target_files/running.html">My running</a></li>
-                <li><a href="/target_files/london_to_paris.html">London to Paris</a></li>
-                <li><a href="/brussels_to_paris/index.html">Brussels to Paris</a></li>
-                <li><a href="/familybikerides/index.html">Family bike rides</a></li>
-                <li><a href="/target_files/blogs.html">My blog</a></li>
-                <li><a href="https://www.meetup.com/York-Code-Dojo/">York Code Dojo</a></li>
-                <li><a href="https://yorkdevelopers.org">York Developers</a></li>
-  
-                <li><a href="/resources">Some useful resources</a></li>
+                <li><a href="/target_files/running.html">Ultra running</a></li>
+                <li><a href="/l2b4/index.html">London to Brighton to London x 2</a></li>
+            </ul>
+
+            <p>Cycling Holidays</p>
+            <ul>
+                <li><a href="/familybikerides/index.html">Family bike rides (Quiet Post Covid Roads)</a></li>
+                <li><a href="/target_files/london_to_paris.html">London to Paris 2022 (David and Mary)</a></li>
+                <li><a href="/rotterdam_to_germany/index.html">Rotterdam to Germany 2023 (David and Josephine)</a></li>
+                <li><a href="/brussels_to_paris/index.html">Brussels to Paris 2025 (David and Esther)</a></li>
+                <li><a href="/isle_of_man/index.html">Isle of Man 2026 (David and Esther)</a></li>
             </ul>
 
             <p>Contact Me</p>
             <ul>
                 <li><a href="https://github.com/DavidBetteridge">On GitHub</a></li>
-                <li><a href="https://www.linkedin.com/in/dbetteridge/">On Linked-in</a></li>
+                <li><a href="https://www.linkedin.com/in/dbetteridge/">On LinkedIn</a></li>
                 <li><a href="https://bsky.app/profile/davidbetteridge.net">On BlueSky</a></li>
+
             </ul>
+
+            <p>Resources</p>
+            <ul>
+                <li><a href="https://www.meetup.com/York-Code-Dojo/">York Code Dojo</a></li>
+                <li><a href="https://yorkdevelopers.org">York Developers</a></li>
+                <li><a href="/resources">Some useful resources</a></li>
+<!--                <li><a href="/target_files/blogs.html">My blog</a></li>-->
+<!--                <li><a href="/target_files/about.html">About me</a></li>-->
+            </ul>
+
         </div>
         <div class="item-content">
             <div class="content-container">
+                <div class="hero-section">
+    <h1 class="hero-title">David Betteridge</h1>
+    <p class="hero-subtitle">Senior Technical Architect & Ultra Runner</p>
+    <div class="highlight-card">
+        <div class="card">
+            <h3>Architecture</h3>
+            <p>Designing scalable cloud solutions with Azure, AWS, C#, React, Python and Postgres.</p>
+        </div>
+        <div class="card">
+            <h3>Community</h3>
+            <p>Co-founder of York Developers and organizer of York Code Dojo.</p>
+        </div>
+        <div class="card">
+            <h3>Endurance</h3>
+            <p>Finisher of the Winter Spine Race, Hardmoors 200 and the Summer Line.</p>
+        </div>
+    </div>
+</div>
 
-<h2>Employment</h2>
-
-<p>I currently work as a Senior Software Developer for a startup called <a href="https://zeromission.io">ZeroMission.</a> which creates software for EV Fleet management.
-We use a range of technolgies which include C#, Postgres, AWS, and React.js.</p>
-
-<h3>Past Employment</h3>
-
-<p>For several years I was employed by the Proactis Group, developing
-e-procurement software. During this time I provided solutions for a range of global companies including universities, large charities, city banks, and housing trusts.</p>
-
-<p>After Proactis,  I joined a very small startup called Hivemap which researched and developed predictive planning software for construction projects. </p>
-
-<br><hr><br>
-
-<h2>York Developers</h2>
-
-<p>I am a co-founder of the York Developers charity, which arranges technical meetups and events in York.
-These include a monthly Code Dojo where attendees pair up and work on a new problem each month.</p>
-<p>I have spoken a number of times at community usergroups on a range of topics from 'Type Systems in Languages' to the internals of 'Microsoft SQL Server'
-
-<br><hr><br>
-
-<h2>Sport</h2>
-In my free time I'm a keen runner and have competed in several ultra-marathons.  These include 'The Line', the Winter Spine Race,  the Hardmoors 200 and the Arc of Attrition.  More information about my running can be found <a href="/running/">here</a>.</p>
+<p>I currently work as a Senior Software Developer for a startup called <a href="https://exofleets.com">éXō Fleets</a>. We use data science and machine learning to make fleets of commercial vehicles more efficient. Day to day I use a range of technologies which include C#, Postgres, Azure, Python and React.js.</p>
+<p>I am a co-founder of the York Developers charity, which arranges technical meetups and events in York. These include a monthly Code Dojo where attendees pair up and work on a new problem each month.
+Additionally, I have spoken a number of times at community usergroups, and have both ran workshops and volunteered for conferences such as NDC London and NDC Security Oslo.</p>
+<p>In my free time I'm a keen runner and have competed in several ultra-marathons. These include 'The Line', the Winter Spine Race, the Hardmoors 200, and the Arc of Attrition. More information about my running can be found <a href="/running/">here</a>.</p>
             </div>
         </div>
     </div>

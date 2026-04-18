@@ -1,6 +1,48 @@
+// Resizing logic
+const resizer = document.getElementById('resizer');
+const panel = document.getElementById('printoutPanel');
+const resizerToggle = document.getElementById('resizer-toggle');
+let isResizing = false;
+
+resizer.addEventListener('mousedown', (e) => {
+    if (e.target === resizerToggle) return;
+    isResizing = true;
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', stopResizing);
+    document.body.style.cursor = 'col-resize';
+});
+
+function handleMouseMove(e) {
+    if (!isResizing) return;
+    const containerWidth = document.querySelector('.row').offsetWidth;
+    const newWidth = containerWidth - e.clientX;
+    if (newWidth > 100 && newWidth < 600) {
+        panel.style.flex = `0 0 ${newWidth}px`;
+    }
+}
+
+function stopResizing() {
+    isResizing = false;
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', stopResizing);
+    document.body.style.cursor = 'default';
+    map.invalidateSize();
+}
+
+resizerToggle.addEventListener('click', () => {
+    panel.classList.toggle('collapsed');
+    if (panel.classList.contains('collapsed')) {
+        resizerToggle.textContent = '«';
+    } else {
+        resizerToggle.textContent = '⋮';
+    }
+    setTimeout(() => map.invalidateSize(), 350); // Wait for transition
+});
+
 var map = L.map('map').setView([54.1719940, -4.5398900], 11);
 
-const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png
+const tiles = L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
@@ -13,7 +55,7 @@ function displayRoute(xmlFile, map, colour) {
 
     function handler() {
 
-        if (this.status == 200 && this.responseXML != null) {
+        if (this.status === 200 && this.responseXML != null) {
             var xmlDoc = this.responseXML;
             var lineData = [];
             var trkpts = xmlDoc.getElementsByTagName("trkpt");
