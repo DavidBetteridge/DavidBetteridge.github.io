@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London Underground Schematic Route</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+        }
+        #map {
+            height: 100vh;
+            width: 100%;
+            background-color: #ffffff;
+        }
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #0019a8;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .controls {
+            margin-top: 10px;
+        }
+        button {
+            padding: 8px 15px;
+            font-size: 1rem;
+            background-color: #0019a8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #001484;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-size: 0.85rem;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 4px;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        /* Custom styles for schematic look */
+        .leaflet-container {
+            background: #fff !important;
+        }
+        .station-label {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            font-weight: bold;
+            font-size: 10px;
+            color: #333;
+            text-shadow: 1px 1px 1px #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>London Underground Schematic</h1>
+        <p>Schematic visualization of the journey</p>
+        <div class="controls">
+            <button id="playBtn">Animate Route</button>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <div class="legend" id="legend">
+        <strong>Tube Lines Visited</strong>
+    </div>
+
+    <script>
+        // Data extracted and filtered
+        const rawRouteData = [
+            
+  {
+    "name": "Chesham",
+    "lat": 51.705227,
+    "lon": -0.611113,
+    "line": ""
+  },
+  {
+    "name": "Chalfont & Latimer",
+    "lat": 51.667915,
+    "lon": -0.560616,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Amersham",
+    "lat": 51.674206,
+    "lon": -0.607362,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Chalfont & Latimer",
+    "lat": 51.667915,
+    "lon": -0.560616,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Chorleywood",
+    "lat": 51.654292,
+    "lon": -0.518319,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Rickmansworth",
+    "lat": 51.640385,
+    "lon": -0.473654,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Moor Park",
+    "lat": 51.629693,
+    "lon": -0.432704,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Croxley",
+    "lat": 51.647069,
+    "lon": -0.441746,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Watford",
+    "lat": 51.657531,
+    "lon": -0.417157,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Croxley",
+    "lat": 51.647069,
+    "lon": -0.441746,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Moor Park",
+    "lat": 51.629693,
+    "lon": -0.432704,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Northwood",
+    "lat": 51.611053,
+    "lon": -0.423829,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Northwood Hills",
+    "lat": 51.600572,
+    "lon": -0.409464,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Pinner",
+    "lat": 51.592901,
+    "lon": -0.381161,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "North Harrow",
+    "lat": 51.584872,
+    "lon": -0.362408,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Rayners Lane",
+    "lat": 51.575147,
+    "lon": -0.371127,
+    "line": "RUN"
+  },
+  {
+    "name": "South Harrow",
+    "lat": 51.564888,
+    "lon": -0.352492,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Sudbury Hill",
+    "lat": 51.55623,
+    "lon": -0.33626,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Sudbury Town",
+    "lat": 51.550815,
+    "lon": -0.315745,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Alperton",
+    "lat": 51.540627,
+    "lon": -0.29961,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Park Royal",
+    "lat": 51.527123,
+    "lon": -0.284341,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "North Ealing",
+    "lat": 51.517505,
+    "lon": -0.288868,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Ealing Common",
+    "lat": 51.51014,
+    "lon": -0.288265,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Ealing Broadway",
+    "lat": 51.515017,
+    "lon": -0.301457,
+    "line": "District"
+  },
+  {
+    "name": "West Acton",
+    "lat": 51.518001,
+    "lon": -0.28098,
+    "line": "Central"
+  },
+  {
+    "name": "North Acton",
+    "lat": 51.523524,
+    "lon": -0.259755,
+    "line": "Central"
+  },
+  {
+    "name": "East Acton",
+    "lat": 51.516612,
+    "lon": -0.247248,
+    "line": "Central"
+  },
+  {
+    "name": "White City",
+    "lat": 51.511959,
+    "lon": -0.224297,
+    "line": "Central"
+  },
+  {
+    "name": "East Acton",
+    "lat": 51.516612,
+    "lon": -0.247248,
+    "line": "Central"
+  },
+  {
+    "name": "North Acton",
+    "lat": 51.523524,
+    "lon": -0.259755,
+    "line": "Central"
+  },
+  {
+    "name": "Hanger Lane",
+    "lat": 51.530177,
+    "lon": -0.292704,
+    "line": "Central"
+  },
+  {
+    "name": "Perivale",
+    "lat": 51.536717,
+    "lon": -0.323446,
+    "line": "Central"
+  },
+  {
+    "name": "Greenford",
+    "lat": 51.542424,
+    "lon": -0.34605,
+    "line": "Central"
+  },
+  {
+    "name": "Northolt",
+    "lat": 51.548236,
+    "lon": -0.368699,
+    "line": "Central"
+  },
+  {
+    "name": "South Ruislip",
+    "lat": 51.556853,
+    "lon": -0.398915,
+    "line": "Central"
+  },
+  {
+    "name": "Ruislip Gardens",
+    "lat": 51.560736,
+    "lon": -0.41071,
+    "line": "Central"
+  },
+  {
+    "name": "West Ruislip",
+    "lat": 51.569688,
+    "lon": -0.437886,
+    "line": "Central"
+  },
+  {
+    "name": "Ickenham",
+    "lat": 51.561992,
+    "lon": -0.442001,
+    "line": "RUN"
+  },
+  {
+    "name": "Hillingdon",
+    "lat": 51.553715,
+    "lon": -0.449828,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Uxbridge",
+    "lat": 51.546565,
+    "lon": -0.477949,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Hillingdon",
+    "lat": 51.553715,
+    "lon": -0.449828,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Ickenham",
+    "lat": 51.561992,
+    "lon": -0.442001,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Ruislip",
+    "lat": 51.571354,
+    "lon": -0.421898,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Ruislip Manor",
+    "lat": 51.573202,
+    "lon": -0.412973,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Eastcote",
+    "lat": 51.576506,
+    "lon": -0.397373,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Rayners Lane",
+    "lat": 51.575147,
+    "lon": -0.371127,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "West Harrow",
+    "lat": 51.57971,
+    "lon": -0.3534,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Harrow-on-the-Hill",
+    "lat": 51.579195,
+    "lon": -0.337225,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Northwick Park",
+    "lat": 51.578481,
+    "lon": -0.318056,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Preston Road",
+    "lat": 51.571972,
+    "lon": -0.295107,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Northwick Park",
+    "lat": 51.578481,
+    "lon": -0.318056,
+    "line": "Metropolitan"
+  },
+  {
+    "name": "Kenton",
+    "lat": 51.581756,
+    "lon": -0.31691,
+    "line": "RUN"
+  },
+  {
+    "name": "Harrow & Wealdstone",
+    "lat": 51.592268,
+    "lon": -0.335217,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Kenton",
+    "lat": 51.581756,
+    "lon": -0.31691,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "South Kenton",
+    "lat": 51.570232,
+    "lon": -0.308433,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "North Wembley",
+    "lat": 51.562551,
+    "lon": -0.304,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Wembley Central",
+    "lat": 51.552304,
+    "lon": -0.296852,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Stonebridge Park",
+    "lat": 51.543959,
+    "lon": -0.275892,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Harlesden",
+    "lat": 51.53631,
+    "lon": -0.257883,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Willesden Junction",
+    "lat": 51.532259,
+    "lon": -0.244283,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Kensal Green",
+    "lat": 51.530539,
+    "lon": -0.225016,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Queen's Park",
+    "lat": 51.534158,
+    "lon": -0.204574,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Kilburn Park",
+    "lat": 51.534979,
+    "lon": -0.194232,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Maida Vale",
+    "lat": 51.529777,
+    "lon": -0.185758,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Warwick Avenue",
+    "lat": 51.523263,
+    "lon": -0.183783,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Paddington (Bakerloo)",
+    "lat": 51.51549,
+    "lon": -0.1757,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Edgware Road (Bakerloo)",
+    "lat": 51.52021,
+    "lon": -0.17027,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Marylebone",
+    "lat": 51.522322,
+    "lon": -0.163207,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Baker Street",
+    "lat": 51.522883,
+    "lon": -0.15713,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Regent's Park",
+    "lat": 51.523344,
+    "lon": -0.146444,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Oxford Circus",
+    "lat": 51.515224,
+    "lon": -0.141903,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Piccadilly Circus",
+    "lat": 51.51023,
+    "lon": -0.1352,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Charing Cross",
+    "lat": 51.50741,
+    "lon": -0.127277,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Embankment",
+    "lat": 51.507058,
+    "lon": -0.122666,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Waterloo",
+    "lat": 51.503299,
+    "lon": -0.11478,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Lambeth North",
+    "lat": 51.498808,
+    "lon": -0.112315,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Elephant & Castle",
+    "lat": 51.494536,
+    "lon": -0.100606,
+    "line": "Bakerloo"
+  },
+  {
+    "name": "Borough",
+    "lat": 51.501199,
+    "lon": -0.09337,
+    "line": "Northern"
+  },
+  {
+    "name": "London Bridge",
+    "lat": 51.505721,
+    "lon": -0.088873,
+    "line": "Northern"
+  },
+  {
+    "name": "Southwark",
+    "lat": 51.503976,
+    "lon": -0.10494,
+    "line": "Jubilee"
+  },
+  {
+    "name": "London Bridge",
+    "lat": 51.505721,
+    "lon": -0.088873,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Bermondsey",
+    "lat": 51.497953,
+    "lon": -0.063769,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Canada Water",
+    "lat": 51.497945,
+    "lon": -0.049722,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Canary Wharf",
+    "lat": 51.503488,
+    "lon": -0.018246,
+    "line": "Jubilee"
+  },
+  {
+    "name": "North Greenwich",
+    "lat": 51.50026,
+    "lon": 0.00462,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Canning Town",
+    "lat": 51.513584,
+    "lon": 0.008322,
+    "line": "Jubilee"
+  },
+  {
+    "name": "West Ham",
+    "lat": 51.528136,
+    "lon": 0.005055,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Plaistow",
+    "lat": 51.531341,
+    "lon": 0.017451,
+    "line": "District"
+  },
+  {
+    "name": "Upton Park",
+    "lat": 51.53534,
+    "lon": 0.035263,
+    "line": "District"
+  },
+  {
+    "name": "East Ham",
+    "lat": 51.538948,
+    "lon": 0.051186,
+    "line": "District"
+  },
+  {
+    "name": "Barking",
+    "lat": 51.539321,
+    "lon": 0.081053,
+    "line": "District"
+  },
+  {
+    "name": "Upney",
+    "lat": 51.538372,
+    "lon": 0.10153,
+    "line": "District"
+  },
+  {
+    "name": "Becontree",
+    "lat": 51.540331,
+    "lon": 0.127016,
+    "line": "District"
+  },
+  {
+    "name": "Dagenham Heathway",
+    "lat": 51.541639,
+    "lon": 0.147527,
+    "line": "District"
+  },
+  {
+    "name": "Dagenham East",
+    "lat": 51.544096,
+    "lon": 0.166017,
+    "line": "District"
+  },
+  {
+    "name": "Elm Park",
+    "lat": 51.549775,
+    "lon": 0.19864,
+    "line": "District"
+  },
+  {
+    "name": "Hornchurch",
+    "lat": 51.554093,
+    "lon": 0.219116,
+    "line": "District"
+  },
+  {
+    "name": "Upminster Bridge",
+    "lat": 51.55856,
+    "lon": 0.235809,
+    "line": "District"
+  },
+  {
+    "name": "Upminster",
+    "lat": 51.559063,
+    "lon": 0.250882,
+    "line": "District"
+  },
+  {
+    "name": "Upminster Bridge",
+    "lat": 51.55856,
+    "lon": 0.235809,
+    "line": "District"
+  },
+  {
+    "name": "Hornchurch",
+    "lat": 51.554093,
+    "lon": 0.219116,
+    "line": "District"
+  },
+  {
+    "name": "Elm Park",
+    "lat": 51.549775,
+    "lon": 0.19864,
+    "line": "District"
+  },
+  {
+    "name": "Dagenham East",
+    "lat": 51.544096,
+    "lon": 0.166017,
+    "line": "District"
+  },
+  {
+    "name": "Dagenham Heathway",
+    "lat": 51.541639,
+    "lon": 0.147527,
+    "line": "District"
+  },
+  {
+    "name": "Becontree",
+    "lat": 51.540331,
+    "lon": 0.127016,
+    "line": "District"
+  },
+  {
+    "name": "Upney",
+    "lat": 51.538372,
+    "lon": 0.10153,
+    "line": "District"
+  },
+  {
+    "name": "Barking",
+    "lat": 51.539321,
+    "lon": 0.081053,
+    "line": "District"
+  },
+  {
+    "name": "East Ham",
+    "lat": 51.538948,
+    "lon": 0.051186,
+    "line": "District"
+  },
+  {
+    "name": "Upton Park",
+    "lat": 51.53534,
+    "lon": 0.035263,
+    "line": "District"
+  },
+  {
+    "name": "Plaistow",
+    "lat": 51.531341,
+    "lon": 0.017451,
+    "line": "District"
+  },
+  {
+    "name": "West Ham",
+    "lat": 51.528136,
+    "lon": 0.005055,
+    "line": "District"
+  },
+  {
+    "name": "Bromley-by-Bow",
+    "lat": 51.524839,
+    "lon": -0.011538,
+    "line": "District"
+  },
+  {
+    "name": "Bow Road",
+    "lat": 51.52694,
+    "lon": -0.025128,
+    "line": "District"
+  },
+  {
+    "name": "Mile End",
+    "lat": 51.525122,
+    "lon": -0.03364,
+    "line": "District"
+  },
+  {
+    "name": "Stepney Green",
+    "lat": 51.521858,
+    "lon": -0.046596,
+    "line": "District"
+  },
+  {
+    "name": "Whitechapel",
+    "lat": 51.519518,
+    "lon": -0.059971,
+    "line": "District"
+  },
+  {
+    "name": "Aldgate East",
+    "lat": 51.515037,
+    "lon": -0.072384,
+    "line": "District"
+  },
+  {
+    "name": "Aldgate",
+    "lat": 51.514246,
+    "lon": -0.075689,
+    "line": "RUN"
+  },
+  {
+    "name": "Tower Hill",
+    "lat": 51.5102,
+    "lon": -0.07681,
+    "line": "Circle"
+  },
+  {
+    "name": "Monument",
+    "lat": 51.5107,
+    "lon": -0.085969,
+    "line": "Circle"
+  },
+  {
+    "name": "Cannon Street",
+    "lat": 51.51151,
+    "lon": -0.090432,
+    "line": "Circle"
+  },
+  {
+    "name": "Mansion House",
+    "lat": 51.512117,
+    "lon": -0.094009,
+    "line": "Circle"
+  },
+  {
+    "name": "Blackfriars",
+    "lat": 51.511581,
+    "lon": -0.103659,
+    "line": "Circle"
+  },
+  {
+    "name": "Temple",
+    "lat": 51.511006,
+    "lon": -0.11426,
+    "line": "Circle"
+  },
+  {
+    "name": "Embankment",
+    "lat": 51.507058,
+    "lon": -0.122666,
+    "line": "Circle"
+  },
+  {
+    "name": "Westminster",
+    "lat": 51.50132,
+    "lon": -0.124861,
+    "line": "Circle"
+  },
+  {
+    "name": "St James's Park",
+    "lat": 51.49962,
+    "lon": -0.13313,
+    "line": "Circle"
+  },
+  {
+    "name": "Victoria",
+    "lat": 51.496359,
+    "lon": -0.143102,
+    "line": "Circle"
+  },
+  {
+    "name": "Sloane Square",
+    "lat": 51.49227,
+    "lon": -0.156377,
+    "line": "Circle"
+  },
+  {
+    "name": "Victoria",
+    "lat": 51.496359,
+    "lon": -0.143102,
+    "line": "District"
+  },
+  {
+    "name": "Pimlico",
+    "lat": 51.489097,
+    "lon": -0.133761,
+    "line": "Victoria"
+  },
+  {
+    "name": "Vauxhall",
+    "lat": 51.48631,
+    "lon": -0.12458,
+    "line": "Victoria"
+  },
+  {
+    "name": "Stockwell",
+    "lat": 51.472184,
+    "lon": -0.122644,
+    "line": "Victoria"
+  },
+  {
+    "name": "Brixton",
+    "lat": 51.462618,
+    "lon": -0.114888,
+    "line": "Victoria"
+  },
+  {
+    "name": "Stockwell",
+    "lat": 51.472184,
+    "lon": -0.122644,
+    "line": "Victoria"
+  },
+  {
+    "name": "Oval",
+    "lat": 51.48185,
+    "lon": -0.112439,
+    "line": "Northern"
+  },
+  {
+    "name": "Kennington",
+    "lat": 51.488337,
+    "lon": -0.105963,
+    "line": "Northern"
+  },
+  {
+    "name": "Nine Elms",
+    "lat": 51.479912,
+    "lon": -0.128476,
+    "line": "Northern"
+  },
+  {
+    "name": "Battersea Power Station",
+    "lat": 51.479932,
+    "lon": -0.142142,
+    "line": "Northern"
+  },
+  {
+    "name": "Nine Elms",
+    "lat": 51.479912,
+    "lon": -0.128476,
+    "line": "Northern"
+  },
+  {
+    "name": "Kennington",
+    "lat": 51.488337,
+    "lon": -0.105963,
+    "line": "Northern"
+  },
+  {
+    "name": "Oval",
+    "lat": 51.48185,
+    "lon": -0.112439,
+    "line": "Northern"
+  },
+  {
+    "name": "Stockwell",
+    "lat": 51.472184,
+    "lon": -0.122644,
+    "line": "Northern"
+  },
+  {
+    "name": "Clapham North",
+    "lat": 51.465135,
+    "lon": -0.130016,
+    "line": "Northern"
+  },
+  {
+    "name": "Clapham Common",
+    "lat": 51.461742,
+    "lon": -0.138317,
+    "line": "Northern"
+  },
+  {
+    "name": "Clapham South",
+    "lat": 51.452654,
+    "lon": -0.147582,
+    "line": "Northern"
+  },
+  {
+    "name": "Balham",
+    "lat": 51.443288,
+    "lon": -0.152997,
+    "line": "Northern"
+  },
+  {
+    "name": "Tooting Bec",
+    "lat": 51.435678,
+    "lon": -0.159736,
+    "line": "Northern"
+  },
+  {
+    "name": "Tooting Broadway",
+    "lat": 51.42763,
+    "lon": -0.168374,
+    "line": "Northern"
+  },
+  {
+    "name": "Colliers Wood",
+    "lat": 51.41816,
+    "lon": -0.178086,
+    "line": "Northern"
+  },
+  {
+    "name": "South Wimbledon",
+    "lat": 51.415309,
+    "lon": -0.192005,
+    "line": "Northern"
+  },
+  {
+    "name": "Morden",
+    "lat": 51.402142,
+    "lon": -0.194839,
+    "line": "Northern"
+  },
+  {
+    "name": "Wimbledon",
+    "lat": 51.421207,
+    "lon": -0.206573,
+    "line": "RUN"
+  },
+  {
+    "name": "Wimbledon Park",
+    "lat": 51.43462,
+    "lon": -0.19962,
+    "line": "District"
+  },
+  {
+    "name": "Southfields",
+    "lat": 51.445073,
+    "lon": -0.206602,
+    "line": "District"
+  },
+  {
+    "name": "East Putney",
+    "lat": 51.459205,
+    "lon": -0.211,
+    "line": "District"
+  },
+  {
+    "name": "Putney Bridge",
+    "lat": 51.468262,
+    "lon": -0.208731,
+    "line": "District"
+  },
+  {
+    "name": "Parsons Green",
+    "lat": 51.47546,
+    "lon": -0.20121,
+    "line": "District"
+  },
+  {
+    "name": "Fulham Broadway",
+    "lat": 51.480081,
+    "lon": -0.195422,
+    "line": "District"
+  },
+  {
+    "name": "West Brompton",
+    "lat": 51.487268,
+    "lon": -0.195599,
+    "line": "District"
+  },
+  {
+    "name": "Earl's Court",
+    "lat": 51.492063,
+    "lon": -0.193378,
+    "line": "District"
+  },
+  {
+    "name": "Kensington Olympia",
+    "lat": 51.497624,
+    "lon": -0.210015,
+    "line": "RUN"
+  },
+  {
+    "name": "Shepherd's Bush",
+    "lat": 51.504791,
+    "lon": -0.219213,
+    "line": "RUN"
+  },
+  {
+    "name": "Holland Park",
+    "lat": 51.507143,
+    "lon": -0.205679,
+    "line": "Central"
+  },
+  {
+    "name": "Notting Hill Gate",
+    "lat": 51.509128,
+    "lon": -0.196104,
+    "line": "Central"
+  },
+  {
+    "name": "Queensway",
+    "lat": 51.510312,
+    "lon": -0.187152,
+    "line": "Central"
+  },
+  {
+    "name": "Lancaster Gate",
+    "lat": 51.511723,
+    "lon": -0.175494,
+    "line": "Central"
+  },
+  {
+    "name": "Marble Arch",
+    "lat": 51.513424,
+    "lon": -0.158953,
+    "line": "Central"
+  },
+  {
+    "name": "Bond Street",
+    "lat": 51.514304,
+    "lon": -0.149723,
+    "line": "Central"
+  },
+  {
+    "name": "Oxford Circus",
+    "lat": 51.515224,
+    "lon": -0.141903,
+    "line": "Central"
+  },
+  {
+    "name": "Tottenham Court Road",
+    "lat": 51.51625,
+    "lon": -0.13062,
+    "line": "Central"
+  },
+  {
+    "name": "Holborn",
+    "lat": 51.51758,
+    "lon": -0.120475,
+    "line": "Central"
+  },
+  {
+    "name": "Chancery Lane",
+    "lat": 51.518247,
+    "lon": -0.111583,
+    "line": "Central"
+  },
+  {
+    "name": "St Paul's",
+    "lat": 51.51512,
+    "lon": -0.09713,
+    "line": "Central"
+  },
+  {
+    "name": "Bank",
+    "lat": 51.51342,
+    "lon": -0.088954,
+    "line": "Central"
+  },
+  {
+    "name": "Liverpool Street",
+    "lat": 51.517372,
+    "lon": -0.083182,
+    "line": "Central"
+  },
+  {
+    "name": "Bethnal Green",
+    "lat": 51.527222,
+    "lon": -0.055506,
+    "line": "Central"
+  },
+  {
+    "name": "Mile End",
+    "lat": 51.525122,
+    "lon": -0.03364,
+    "line": "Central"
+  },
+  {
+    "name": "Stratford",
+    "lat": 51.541806,
+    "lon": -0.003458,
+    "line": "Central"
+  },
+  {
+    "name": "Leyton",
+    "lat": 51.556589,
+    "lon": -0.005523,
+    "line": "Central"
+  },
+  {
+    "name": "Leytonstone",
+    "lat": 51.568324,
+    "lon": 0.008194,
+    "line": "Central"
+  },
+  {
+    "name": "Wanstead",
+    "lat": 51.575501,
+    "lon": 0.028527,
+    "line": "Central"
+  },
+  {
+    "name": "Redbridge",
+    "lat": 51.576243,
+    "lon": 0.04536,
+    "line": "Central"
+  },
+  {
+    "name": "Gants Hill",
+    "lat": 51.576544,
+    "lon": 0.066185,
+    "line": "Central"
+  },
+  {
+    "name": "Newbury Park",
+    "lat": 51.575726,
+    "lon": 0.090004,
+    "line": "Central"
+  },
+  {
+    "name": "Barkingside",
+    "lat": 51.585689,
+    "lon": 0.088585,
+    "line": "Central"
+  },
+  {
+    "name": "Fairlop",
+    "lat": 51.595618,
+    "lon": 0.091004,
+    "line": "Central"
+  },
+  {
+    "name": "Hainault",
+    "lat": 51.603659,
+    "lon": 0.093482,
+    "line": "Central"
+  },
+  {
+    "name": "Grange Hill",
+    "lat": 51.613378,
+    "lon": 0.092066,
+    "line": "Central"
+  },
+  {
+    "name": "Chigwell",
+    "lat": 51.617916,
+    "lon": 0.075041,
+    "line": "Central"
+  },
+  {
+    "name": "Roding Valley",
+    "lat": 51.61734,
+    "lon": 0.04355,
+    "line": "Central"
+  },
+  {
+    "name": "Woodford",
+    "lat": 51.606899,
+    "lon": 0.03397,
+    "line": "Central"
+  },
+  {
+    "name": "Buckhurst Hill",
+    "lat": 51.626605,
+    "lon": 0.046757,
+    "line": "Central"
+  },
+  {
+    "name": "Loughton",
+    "lat": 51.641443,
+    "lon": 0.055476,
+    "line": "Central"
+  },
+  {
+    "name": "Debden",
+    "lat": 51.645386,
+    "lon": 0.083782,
+    "line": "Central"
+  },
+  {
+    "name": "Theydon Bois",
+    "lat": 51.671759,
+    "lon": 0.103085,
+    "line": "Central"
+  },
+  {
+    "name": "Epping",
+    "lat": 51.69368,
+    "lon": 0.113767,
+    "line": "Central"
+  },
+  {
+    "name": "Theydon Bois",
+    "lat": 51.671759,
+    "lon": 0.103085,
+    "line": "Central"
+  },
+  {
+    "name": "Debden",
+    "lat": 51.645386,
+    "lon": 0.083782,
+    "line": "Central"
+  },
+  {
+    "name": "Loughton",
+    "lat": 51.641443,
+    "lon": 0.055476,
+    "line": "Central"
+  },
+  {
+    "name": "Buckhurst Hill",
+    "lat": 51.626605,
+    "lon": 0.046757,
+    "line": "Central"
+  },
+  {
+    "name": "Woodford",
+    "lat": 51.606899,
+    "lon": 0.03397,
+    "line": "Central"
+  },
+  {
+    "name": "South Woodford",
+    "lat": 51.591907,
+    "lon": 0.027338,
+    "line": "Central"
+  },
+  {
+    "name": "Snaresbrook",
+    "lat": 51.580678,
+    "lon": 0.02144,
+    "line": "Central"
+  },
+  {
+    "name": "Walthamstow Central",
+    "lat": 51.582965,
+    "lon": -0.019885,
+    "line": "RUN"
+  },
+  {
+    "name": "Blackhorse Road",
+    "lat": 51.586919,
+    "lon": -0.04115,
+    "line": "Victoria"
+  },
+  {
+    "name": "Tottenham Hale",
+    "lat": 51.588108,
+    "lon": -0.060241,
+    "line": "Victoria"
+  },
+  {
+    "name": "Seven Sisters",
+    "lat": 51.58333,
+    "lon": -0.072584,
+    "line": "Victoria"
+  },
+  {
+    "name": "Finsbury Park",
+    "lat": 51.564158,
+    "lon": -0.106825,
+    "line": "Victoria"
+  },
+  {
+    "name": "Highbury & Islington",
+    "lat": 51.54635,
+    "lon": -0.103324,
+    "line": "Victoria"
+  },
+  {
+    "name": "King's Cross St Pancras",
+    "lat": 51.530663,
+    "lon": -0.123194,
+    "line": "Victoria"
+  },
+  {
+    "name": "Euston",
+    "lat": 51.527999,
+    "lon": -0.133785,
+    "line": "Victoria"
+  },
+  {
+    "name": "Warren Street",
+    "lat": 51.524951,
+    "lon": -0.138321,
+    "line": "Victoria"
+  },
+  {
+    "name": "Goodge Street",
+    "lat": 51.520599,
+    "lon": -0.134361,
+    "line": "Northern"
+  },
+  {
+    "name": "Warren Street",
+    "lat": 51.524951,
+    "lon": -0.138321,
+    "line": "Northern"
+  },
+  {
+    "name": "Euston",
+    "lat": 51.527999,
+    "lon": -0.133785,
+    "line": "Northern"
+  },
+  {
+    "name": "Mornington Crescent",
+    "lat": 51.534679,
+    "lon": -0.138789,
+    "line": "Northern"
+  },
+  {
+    "name": "Camden Town",
+    "lat": 51.539292,
+    "lon": -0.14274,
+    "line": "Northern"
+  },
+  {
+    "name": "Chalk Farm",
+    "lat": 51.544118,
+    "lon": -0.153388,
+    "line": "Northern"
+  },
+  {
+    "name": "Belsize Park",
+    "lat": 51.550311,
+    "lon": -0.164648,
+    "line": "Northern"
+  },
+  {
+    "name": "Hampstead",
+    "lat": 51.556632,
+    "lon": -0.178487,
+    "line": "Northern"
+  },
+  {
+    "name": "Golders Green",
+    "lat": 51.572259,
+    "lon": -0.194039,
+    "line": "Northern"
+  },
+  {
+    "name": "Brent Cross",
+    "lat": 51.57665,
+    "lon": -0.213622,
+    "line": "Northern"
+  },
+  {
+    "name": "Hendon Central",
+    "lat": 51.583301,
+    "lon": -0.226424,
+    "line": "Northern"
+  },
+  {
+    "name": "Colindale",
+    "lat": 51.595424,
+    "lon": -0.249919,
+    "line": "Northern"
+  },
+  {
+    "name": "Burnt Oak",
+    "lat": 51.602774,
+    "lon": -0.264048,
+    "line": "Northern"
+  },
+  {
+    "name": "Edgware",
+    "lat": 51.613653,
+    "lon": -0.274928,
+    "line": "Northern"
+  },
+  {
+    "name": "Canons Park",
+    "lat": 51.607701,
+    "lon": -0.294693,
+    "line": "RUN"
+  },
+  {
+    "name": "Stanmore",
+    "lat": 51.619839,
+    "lon": -0.303266,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Canons Park",
+    "lat": 51.607701,
+    "lon": -0.294693,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Queensbury",
+    "lat": 51.594188,
+    "lon": -0.286219,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Kingsbury",
+    "lat": 51.584845,
+    "lon": -0.27879,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Wembley Park",
+    "lat": 51.563198,
+    "lon": -0.279262,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Neasden",
+    "lat": 51.553986,
+    "lon": -0.249837,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Dollis Hill",
+    "lat": 51.551955,
+    "lon": -0.239068,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Willesden Green",
+    "lat": 51.549146,
+    "lon": -0.221537,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Kilburn",
+    "lat": 51.546803,
+    "lon": -0.204105,
+    "line": "Jubilee"
+  },
+  {
+    "name": "West Hampstead",
+    "lat": 51.546638,
+    "lon": -0.191059,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Finchley Road",
+    "lat": 51.546825,
+    "lon": -0.179845,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Swiss Cottage",
+    "lat": 51.543681,
+    "lon": -0.174894,
+    "line": "Jubilee"
+  },
+  {
+    "name": "St John's Wood",
+    "lat": 51.53454,
+    "lon": -0.17415,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Baker Street",
+    "lat": 51.522883,
+    "lon": -0.15713,
+    "line": "Jubilee"
+  },
+  {
+    "name": "Great Portland Street",
+    "lat": 51.52384,
+    "lon": -0.144262,
+    "line": "Circle"
+  },
+  {
+    "name": "Euston Square",
+    "lat": 51.525604,
+    "lon": -0.135829,
+    "line": "Circle"
+  },
+  {
+    "name": "King's Cross St Pancras",
+    "lat": 51.530663,
+    "lon": -0.123194,
+    "line": "Circle"
+  },
+  {
+    "name": "Farringdon",
+    "lat": 51.520252,
+    "lon": -0.104913,
+    "line": "Circle"
+  },
+  {
+    "name": "Barbican",
+    "lat": 51.520275,
+    "lon": -0.097993,
+    "line": "Circle"
+  },
+  {
+    "name": "Moorgate",
+    "lat": 51.518176,
+    "lon": -0.088322,
+    "line": "Northern"
+  },
+  {
+    "name": "Old Street",
+    "lat": 51.525864,
+    "lon": -0.08777,
+    "line": "Northern"
+  },
+  {
+    "name": "Angel",
+    "lat": 51.532624,
+    "lon": -0.105898,
+    "line": "Northern"
+  },
+  {
+    "name": "King's Cross St Pancras",
+    "lat": 51.530663,
+    "lon": -0.123194,
+    "line": "Northern"
+  },
+  {
+    "name": "Euston",
+    "lat": 51.527999,
+    "lon": -0.133785,
+    "line": "Northern"
+  },
+  {
+    "name": "Camden Town",
+    "lat": 51.539292,
+    "lon": -0.14274,
+    "line": "Northern"
+  },
+  {
+    "name": "Kentish Town",
+    "lat": 51.550312,
+    "lon": -0.140733,
+    "line": "Northern"
+  },
+  {
+    "name": "Tufnell Park",
+    "lat": 51.556822,
+    "lon": -0.138433,
+    "line": "Northern"
+  },
+  {
+    "name": "Archway",
+    "lat": 51.565478,
+    "lon": -0.134819,
+    "line": "Northern"
+  },
+  {
+    "name": "Highgate",
+    "lat": 51.577532,
+    "lon": -0.145857,
+    "line": "Northern"
+  },
+  {
+    "name": "East Finchley",
+    "lat": 51.587131,
+    "lon": -0.165012,
+    "line": "Northern"
+  },
+  {
+    "name": "Finchley Central",
+    "lat": 51.60061,
+    "lon": -0.19294,
+    "line": "Northern"
+  },
+  {
+    "name": "Mill Hill East",
+    "lat": 51.608229,
+    "lon": -0.209986,
+    "line": "Northern"
+  },
+  {
+    "name": "Finchley Central",
+    "lat": 51.60061,
+    "lon": -0.19294,
+    "line": "Northern"
+  },
+  {
+    "name": "West Finchley",
+    "lat": 51.609426,
+    "lon": -0.188362,
+    "line": "Northern"
+  },
+  {
+    "name": "Woodside Park",
+    "lat": 51.618014,
+    "lon": -0.18542,
+    "line": "Northern"
+  },
+  {
+    "name": "Totteridge & Whetstone",
+    "lat": 51.630597,
+    "lon": -0.17921,
+    "line": "Northern"
+  },
+  {
+    "name": "High Barnet",
+    "lat": 51.650541,
+    "lon": -0.194298,
+    "line": "Northern"
+  },
+  {
+    "name": "Cockfosters",
+    "lat": 51.65152,
+    "lon": -0.149171,
+    "line": "RUN"
+  },
+  {
+    "name": "Oakwood",
+    "lat": 51.647725,
+    "lon": -0.132168,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Southgate",
+    "lat": 51.632315,
+    "lon": -0.127816,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Arnos Grove",
+    "lat": 51.616446,
+    "lon": -0.133062,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Bounds Green",
+    "lat": 51.607034,
+    "lon": -0.124235,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Wood Green",
+    "lat": 51.597479,
+    "lon": -0.109886,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Turnpike Lane",
+    "lat": 51.590272,
+    "lon": -0.102953,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Manor House",
+    "lat": 51.570738,
+    "lon": -0.096118,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Finsbury Park",
+    "lat": 51.564158,
+    "lon": -0.106825,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Arsenal",
+    "lat": 51.5584,
+    "lon": -0.10568,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Holloway Road",
+    "lat": 51.552697,
+    "lon": -0.113244,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Caledonian Road",
+    "lat": 51.548519,
+    "lon": -0.118493,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "King's Cross St Pancras",
+    "lat": 51.530663,
+    "lon": -0.123194,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Russell Square",
+    "lat": 51.523073,
+    "lon": -0.124285,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Holborn",
+    "lat": 51.51758,
+    "lon": -0.120475,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Covent Garden",
+    "lat": 51.513093,
+    "lon": -0.124436,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Leicester Square",
+    "lat": 51.511386,
+    "lon": -0.128426,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Piccadilly Circus",
+    "lat": 51.51023,
+    "lon": -0.1352,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Green Park",
+    "lat": 51.506947,
+    "lon": -0.142787,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Hyde Park Corner",
+    "lat": 51.50493,
+    "lon": -0.15203,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Knightsbridge",
+    "lat": 51.501669,
+    "lon": -0.160508,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "South Kensington",
+    "lat": 51.494094,
+    "lon": -0.174138,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Gloucester Road",
+    "lat": 51.494316,
+    "lon": -0.182658,
+    "line": "District"
+  },
+  {
+    "name": "Earl's Court",
+    "lat": 51.492063,
+    "lon": -0.193378,
+    "line": "District"
+  },
+  {
+    "name": "High Street Kensington",
+    "lat": 51.501055,
+    "lon": -0.192792,
+    "line": "District"
+  },
+  {
+    "name": "Notting Hill Gate",
+    "lat": 51.509128,
+    "lon": -0.196104,
+    "line": "District"
+  },
+  {
+    "name": "Bayswater",
+    "lat": 51.512284,
+    "lon": -0.187938,
+    "line": "District"
+  },
+  {
+    "name": "Paddington (H&C/Circle)",
+    "lat": 51.51549,
+    "lon": -0.1757,
+    "line": "District"
+  },
+  {
+    "name": "Edgware Road (H&C/Circle)",
+    "lat": 51.52021,
+    "lon": -0.17027,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Paddington (Bakerloo)",
+    "lat": 51.51549,
+    "lon": -0.1757,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Royal Oak",
+    "lat": 51.51911,
+    "lon": -0.18878,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Westbourne Park",
+    "lat": 51.52111,
+    "lon": -0.201065,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Ladbroke Grove",
+    "lat": 51.517449,
+    "lon": -0.210391,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Latimer Road",
+    "lat": 51.513389,
+    "lon": -0.217799,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Wood Lane",
+    "lat": 51.50967,
+    "lon": -0.2245,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Shepherd's Bush Market",
+    "lat": 51.5057,
+    "lon": -0.22627,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Goldhawk Road",
+    "lat": 51.502005,
+    "lon": -0.226715,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Hammersmith (H&C/Circle)",
+    "lat": 51.492304,
+    "lon": -0.223619,
+    "line": "Hammersmith & City"
+  },
+  {
+    "name": "Hammersmith (District/Piccadilly)",
+    "lat": 51.492304,
+    "lon": -0.223619,
+    "line": "District"
+  },
+  {
+    "name": "Barons Court",
+    "lat": 51.49037,
+    "lon": -0.21355,
+    "line": "District"
+  },
+  {
+    "name": "West Kensington",
+    "lat": 51.490459,
+    "lon": -0.206636,
+    "line": "District"
+  },
+  {
+    "name": "Barons Court",
+    "lat": 51.49037,
+    "lon": -0.21355,
+    "line": "District"
+  },
+  {
+    "name": "Hammersmith (District/Piccadilly)",
+    "lat": 51.492304,
+    "lon": -0.223619,
+    "line": "District"
+  },
+  {
+    "name": "Ravenscourt Park",
+    "lat": 51.494122,
+    "lon": -0.235881,
+    "line": "District"
+  },
+  {
+    "name": "Stamford Brook",
+    "lat": 51.494917,
+    "lon": -0.245704,
+    "line": "District"
+  },
+  {
+    "name": "Turnham Green",
+    "lat": 51.495148,
+    "lon": -0.254555,
+    "line": "District"
+  },
+  {
+    "name": "Gunnersbury",
+    "lat": 51.491803,
+    "lon": -0.275267,
+    "line": "District"
+  },
+  {
+    "name": "Kew Gardens",
+    "lat": 51.477058,
+    "lon": -0.285241,
+    "line": "District"
+  },
+  {
+    "name": "Richmond",
+    "lat": 51.463237,
+    "lon": -0.301336,
+    "line": "District"
+  },
+  {
+    "name": "Kew Gardens",
+    "lat": 51.477058,
+    "lon": -0.285241,
+    "line": "District"
+  },
+  {
+    "name": "Gunnersbury",
+    "lat": 51.491803,
+    "lon": -0.275267,
+    "line": "District"
+  },
+  {
+    "name": "Turnham Green",
+    "lat": 51.495148,
+    "lon": -0.254555,
+    "line": "District"
+  },
+  {
+    "name": "Chiswick Park",
+    "lat": 51.49436,
+    "lon": -0.26739,
+    "line": "District"
+  },
+  {
+    "name": "Acton Town",
+    "lat": 51.503057,
+    "lon": -0.280462,
+    "line": "District"
+  },
+  {
+    "name": "South Ealing",
+    "lat": 51.501003,
+    "lon": -0.307424,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Northfields",
+    "lat": 51.499319,
+    "lon": -0.314719,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Boston Manor",
+    "lat": 51.495635,
+    "lon": -0.324939,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Osterley",
+    "lat": 51.481274,
+    "lon": -0.352224,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Hounslow East",
+    "lat": 51.473213,
+    "lon": -0.356474,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Hounslow Central",
+    "lat": 51.471295,
+    "lon": -0.366578,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Hounslow West",
+    "lat": 51.473469,
+    "lon": -0.386544,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Hatton Cross",
+    "lat": 51.466747,
+    "lon": -0.423191,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Heathrow Terminals 2 & 3",
+    "lat": 51.47235,
+    "lon": -0.45198,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Heathrow Terminal 5",
+    "lat": 51.470052,
+    "lon": -0.49056,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Heathrow Terminals 2 & 3",
+    "lat": 51.47235,
+    "lon": -0.45198,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Hatton Cross",
+    "lat": 51.466747,
+    "lon": -0.423191,
+    "line": "Piccadilly"
+  },
+  {
+    "name": "Heathrow Terminal 4",
+    "lat": 51.458524,
+    "lon": -0.445771,
+    "line": "BUS"
+  }
+
+        ];
+
+        // Filter out non-tube lines as requested
+        const excludedLines = ["London Overground", "DLR", "Elizabeth line"];
+        const routeData = rawRouteData.filter(d => !excludedLines.includes(d.line));
+
+        const lineColors = {
+            "Bakerloo": "#B36305",
+            "Central": "#E32017",
+            "Circle": "#FFD300",
+            "District": "#00782A",
+            "Hammersmith & City": "#F3A9BB",
+            "Jubilee": "#A0A5A9",
+            "Metropolitan": "#9B0056",
+            "Northern": "#000000",
+            "Piccadilly": "#003688",
+            "Victoria": "#0098D4",
+            "Waterloo & City": "#95CDBA"
+        };
+
+        const map = L.map('map', {
+            zoomControl: true,
+            attributionControl: false
+        }).setView([51.5074, -0.1278], 12);
+
+        // No tiles as requested. Using a white background.
+        
+        const latLons = routeData.filter(d => !d.error).map(d => [d.lat, d.lon]);
+        
+        let polylineLayer = L.featureGroup().addTo(map);
+        let animationMarker = null;
+
+        function drawStaticRoute() {
+            polylineLayer.clearLayers();
+            if (latLons.length > 0) {
+                for (let i = 0; i < routeData.length - 1; i++) {
+                    const start = routeData[i];
+                    const end = routeData[i+1];
+                    if (start.error || end.error) continue;
+                    
+                    // Skip segments where the line is not in our Tube list
+                    if (excludedLines.includes(end.line)) continue;
+
+                    const color = lineColors[end.line] || "#333";
+                    L.polyline([[start.lat, start.lon], [end.lat, end.lon]], {
+                        color: color, weight: 6, opacity: 1, lineJoin: 'round'
+                    }).addTo(polylineLayer)
+                    .bindPopup(`${start.name} → ${end.name}<br>Line: ${end.line || 'Unknown'}`);
+                    
+                    // Add station circles
+                    L.circleMarker([start.lat, start.lon], {
+                        radius: 3,
+                        color: '#333',
+                        fillColor: '#fff',
+                        fillOpacity: 1,
+                        weight: 2
+                    }).addTo(polylineLayer);
+                }
+                
+                // End station circle
+                const last = routeData[routeData.length - 1];
+                L.circleMarker([last.lat, last.lon], {
+                    radius: 3,
+                    color: '#333',
+                    fillColor: '#fff',
+                    fillOpacity: 1,
+                    weight: 2
+                }).addTo(polylineLayer);
+
+                L.circleMarker(latLons[0], { radius: 8, color: 'green', fillOpacity: 1 }).addTo(polylineLayer).bindPopup("Start: " + routeData[0].name);
+                L.circleMarker(latLons[latLons.length - 1], { radius: 8, color: 'red', fillOpacity: 1 }).addTo(polylineLayer).bindPopup("End: " + routeData[routeData.length - 1].name);
+                
+                map.fitBounds(L.latLngBounds(latLons), { padding: [50, 50] });
+            }
+        }
+
+        async function animateRoute() {
+            const playBtn = document.getElementById('playBtn');
+            playBtn.disabled = true;
+            polylineLayer.clearLayers();
+            
+            if (animationMarker) map.removeLayer(animationMarker);
+            
+            animationMarker = L.circleMarker(latLons[0], { 
+                radius: 10, color: '#0019a8', fillColor: 'white', fillOpacity: 1, weight: 3 
+            }).addTo(map);
+
+            for (let i = 0; i < routeData.length - 1; i++) {
+                const start = routeData[i];
+                const end = routeData[i+1];
+                if (start.error || end.error) continue;
+                if (excludedLines.includes(end.line)) continue;
+
+                const color = lineColors[end.line] || "#333";
+                L.polyline([[start.lat, start.lon], [end.lat, end.lon]], {
+                    color: color, weight: 6, opacity: 1, lineJoin: 'round'
+                }).addTo(polylineLayer);
+                
+                animationMarker.setLatLng([end.lat, end.lon]);
+                map.panTo([end.lat, end.lon]);
+                
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            
+            playBtn.disabled = false;
+            drawStaticRoute();
+        }
+
+        document.getElementById('playBtn').addEventListener('click', animateRoute);
+        drawStaticRoute();
+
+        // Populate legend
+        const legend = document.getElementById('legend');
+        const usedLines = [...new Set(routeData.map(d => d.line).filter(l => l && !excludedLines.includes(l)))];
+        usedLines.forEach(line => {
+            const item = document.createElement('div');
+            item.className = 'legend-item';
+            const color = lineColors[line] || "#333";
+            item.innerHTML = `<div class="legend-color" style="background-color: ${color}"></div><span>${line}</span>`;
+            legend.appendChild(item);
+        });
+
+    </script>
+</body>
+</html>
